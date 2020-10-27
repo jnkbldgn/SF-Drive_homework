@@ -1,0 +1,23 @@
+{
+    "env": {
+        "es6": true,
+        "commonjs": true,
+        "browser": true,
+        "node": true
+    },
+    "extends": ["airbnb", "airbnb/hooks"],
+    "parserOptions": {
+        "parser": "@babel/eslint-parser",
+        "sourceType": "module"
+    },
+    "settings": {
+        "import/resolver": "webpack"
+    },
+    "plugins": [
+        "import"
+    ],
+    "rules": {
+        "import/no-unresolved": [2, {"commonjs": true}],
+        "react/react-in-jsx-scope": "off"
+    }
+}
