@@ -7,11 +7,12 @@ export default function Text(props) {
     tag, family, size, weidth, children,
   } = props;
   const sizeClass = styles[`size-${size}`];
+  const familyClass = styles[`family-${family}`];
   return (
     React.createElement(
       tag,
       {
-        className: [sizeClass],
+        className: [sizeClass, familyClass],
       },
       children,
     )
@@ -34,14 +35,20 @@ const sizes = [
   24,
 ];
 
+const families = [
+  'roboto',
+];
+
 Text.propTypes = {
   tag: PropTypes.oneOf(tags),
   size: PropTypes.oneOf(sizes),
+  family: PropTypes.oneOf(families),
   children: PropTypes.node,
 };
 
 Text.defaultProps = {
   tag: tags[0],
   size: sizes[0],
+  family: families[0],
   children: null,
 };
