@@ -5,12 +5,23 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const resolve = (filename) => path.resolve(__dirname, filename);
 const buildDir = 'dist';
+const isDev = process.argv.mode !== 'production';
 
 const entry = resolve('./src/index.js');
 
 const output = {
   path: resolve(`./${buildDir}`),
   filename: 'bundle.[contenthash:8].js',
+};
+
+const styleLoader = isDev ? 'style-loader' : MiniCssExtractPlugin.loader;
+
+const sassLoader = {
+  loader: 'sass-loader',
+  options: {
+    additionalData: '@import "~styles/settings";',
+    sourceMap: isDev,
+  },
 };
 
 const rules = [
@@ -24,22 +35,38 @@ const rules = [
     loader: 'html-loader',
   },
   {
-    test: /\.s[ca]ss$/i,
+    test: /\.module\.s(a|c)ss$/i,
     use: [
-      MiniCssExtractPlugin.loader,
+      styleLoader,
+      {
+        loader: 'css-loader',
+        options: {
+          modules: true,
+          sourceMap: isDev,
+        },
+      },
+      sassLoader,
+    ],
+  },
+  {
+    test: /\.s[ca]ss$/i,
+    exclude: /\.module.(s(a|c)ss)$/,
+    use: [
+      styleLoader,
       'css-loader',
-      'sass-loader',
+      sassLoader,
     ],
   },
 ];
 
 const alias = {
   root: resolve('./src/'),
+  styles: resolve('./src/styles/'),
   ui: resolve('./src/ui/'),
   components: resolve('./src/components/'),
 };
 
-const extensions = ['.jsx', '.js', 'json'];
+const extensions = ['.jsx', '.js', '.json', '.scss'];
 
 const plugins = [
   new MiniCssExtractPlugin({
@@ -61,6 +88,7 @@ module.exports = {
   module: {
     rules,
   },
+  devtool: isDev && 'inline-source-map',
   resolve: {
     alias,
     extensions,

@@ -18,6 +18,7 @@
     ],
     "rules": {
         "import/no-unresolved": [2, {"commonjs": true}],
-        "react/react-in-jsx-scope": "off"
+        "react/react-in-jsx-scope": "off",
+        "react/button-has-type": "off"
     }
 }
