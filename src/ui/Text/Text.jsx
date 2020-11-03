@@ -4,15 +4,16 @@ import styles from './styles.module.scss';
 
 export default function Text(props) {
   const {
-    tag, family, size, weidth, children,
+    tag, family, size, weight, children,
   } = props;
   const sizeClass = styles[`size-${size}`];
   const familyClass = styles[`family-${family}`];
+  const weightClass = styles[`weight-${weight}`];
   return (
     React.createElement(
       tag,
       {
-        className: [sizeClass, familyClass],
+        className: `${sizeClass} ${familyClass} ${weightClass}`,
       },
       children,
     )
@@ -30,25 +31,22 @@ const tags = [
   'p',
 ];
 
-const sizes = [
-  16,
-  24,
-];
-
-const families = [
-  'roboto',
-];
+const sizesProps = styles.sizes.split(', ');
+const weightsProps = styles.weights.split(', ');
+const familiesProps = styles.families.split(', ');
 
 Text.propTypes = {
   tag: PropTypes.oneOf(tags),
-  size: PropTypes.oneOf(sizes),
-  family: PropTypes.oneOf(families),
+  size: PropTypes.oneOf(sizesProps),
+  family: PropTypes.oneOf(familiesProps),
+  weight: PropTypes.oneOf(weightsProps),
   children: PropTypes.node,
 };
 
 Text.defaultProps = {
   tag: tags[0],
-  size: sizes[0],
-  family: families[0],
+  size: sizesProps[0],
+  family: familiesProps[0],
+  weight: weightsProps[0],
   children: null,
 };

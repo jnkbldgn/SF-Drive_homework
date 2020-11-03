@@ -35,7 +35,7 @@
     "webpack-dev-server": "3.x.x"
   },
   "scripts": {
-    "dev": "webpack-dev-server",
+    "dev": "yarn && webpack-dev-server",
     "build": "webpack --mode production"
   }
 }

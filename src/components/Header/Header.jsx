@@ -1,12 +1,11 @@
-import UiButton from 'ui/Button';
-import Text from 'ui/Text';
+import Logo from 'components/Logo';
+import styles from 'components/Header/styles.module';
 
 export default function Header() {
   return (
-    <header>
-      <UiButton>
-        <Text>Вход</Text>
-      </UiButton>
+    <header className={styles.container}>
+      <Logo />
+      <Navigation />
     </header>
   );
 }
