@@ -34,17 +34,6 @@ const rules = [
   {
     test: /\.html$/i,
     loader: 'html-loader',
-    options: {
-      attributes: {
-        list: [
-          {
-            tag: 'img',
-            attribute: 'src',
-            type: 'src',
-          },
-        ],
-      },
-    },
   },
   {
     test: /\.module\.s(a|c)ss$/i,
@@ -81,7 +70,7 @@ const alias = {
   root: resolve('./src/'),
   images: resolve('./public/images/'),
   styles: resolve('./src/styles/'),
-  ui: resolve('./src/ui/'),
+  ui: resolve('./src/components/ui/'),
   components: resolve('./src/components/'),
   layout: resolve('./src/layout/'),
 };
