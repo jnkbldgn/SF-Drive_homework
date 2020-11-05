@@ -1,0 +1,10 @@
+.root {
+    display: flex;
+    justify-content: flex-start;   
+}
+
+.listItem {
+    &:not(:last-child) {
+        margin-right: 20px;
+    }
+}

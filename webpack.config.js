@@ -5,13 +5,14 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const resolve = (filename) => path.resolve(__dirname, filename);
 const buildDir = 'dist';
-const isDev = process.argv.mode !== 'production';
+const { NODE_ENV } = process.env;
+const isDev = NODE_ENV !== 'production';
 
 const entry = resolve('./src/index.js');
 
 const output = {
   path: resolve(`./${buildDir}`),
-  filename: 'bundle.[contenthash:8].js',
+  filename: isDev ? 'bundle.js' : 'bundle.[contenthash:8].js',
 };
 
 const styleLoader = isDev ? 'style-loader' : MiniCssExtractPlugin.loader;
@@ -28,11 +29,22 @@ const rules = [
   {
     test: /\.js[x]?$/i,
     use: 'babel-loader',
-    exclude: /\/node_modules\//,
+    exclude: [/node_modules/],
   },
   {
     test: /\.html$/i,
     loader: 'html-loader',
+    options: {
+      attributes: {
+        list: [
+          {
+            tag: 'img',
+            attribute: 'src',
+            type: 'src',
+          },
+        ],
+      },
+    },
   },
   {
     test: /\.module\.s(a|c)ss$/i,
@@ -57,13 +69,21 @@ const rules = [
       sassLoader,
     ],
   },
+  {
+    test: /\.(svg|png|jp(e)?g)$/,
+    use: [
+      'file-loader',
+    ],
+  },
 ];
 
 const alias = {
   root: resolve('./src/'),
+  images: resolve('./public/images/'),
   styles: resolve('./src/styles/'),
   ui: resolve('./src/ui/'),
   components: resolve('./src/components/'),
+  layout: resolve('./src/layout/'),
 };
 
 const extensions = ['.jsx', '.js', '.json', '.scss'];
@@ -83,6 +103,7 @@ const devServer = {
 };
 
 module.exports = {
+  mode: NODE_ENV,
   entry,
   output,
   module: {

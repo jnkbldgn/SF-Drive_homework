@@ -1,19 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import cn from 'classnames';
 import styles from './styles.module.scss';
 
 export default function Text(props) {
   const {
-    tag, family, size, weight, children,
+    tag, family, size, weight, children, className,
   } = props;
   const sizeClass = styles[`size-${size}`];
   const familyClass = styles[`family-${family}`];
   const weightClass = styles[`weight-${weight}`];
+  const classes = cn(styles.root, className, sizeClass, familyClass, weightClass);
   return (
     React.createElement(
       tag,
       {
-        className: `${sizeClass} ${familyClass} ${weightClass}`,
+        className: classes,
       },
       children,
     )
@@ -41,6 +43,7 @@ Text.propTypes = {
   family: PropTypes.oneOf(familiesProps),
   weight: PropTypes.oneOf(weightsProps),
   children: PropTypes.node,
+  className: PropTypes.string,
 };
 
 Text.defaultProps = {
@@ -49,4 +52,5 @@ Text.defaultProps = {
   family: familiesProps[0],
   weight: weightsProps[0],
   children: null,
+  className: '',
 };

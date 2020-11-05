@@ -1,0 +1,14 @@
+.root {
+    @include container();
+    padding: {
+        top: 20px;
+        bottom: 20px;
+    };
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navigation {
+    display: none;
+}

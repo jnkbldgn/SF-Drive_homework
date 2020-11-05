@@ -1,0 +1,14 @@
+.root {
+    color: inherit;
+    text-decoration: inherit;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &:active,
+    &:visited {
+        color: inherit;
+        text-decoration: inherit;
+    }
+}

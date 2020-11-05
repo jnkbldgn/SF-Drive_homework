@@ -1,13 +1,17 @@
-import Text from 'ui/Text';
+import Image from 'ui/Image';
+import Link from 'ui/Link';
+import styles from './styles.module.scss';
 
 export default function Logo() {
   return (
-    <Text
-      size="24"
-      weight="700"
-      family="rubik"
+    <Link
+      claaName={styles.root}
+      href="/"
     >
-      SkillDrive
-    </Text>
+      <Image
+        alt="SkillDrive"
+        src="images/logo.svg"
+      />
+    </Link>
   );
 }

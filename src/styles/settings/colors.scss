@@ -1,3 +1,19 @@
 $gray: (
-    'lighten': rgba(27, 27, 27, 0.4),
+    'dark': rgba(27, 27, 27, 0.4),
+    'base': rgba(79,79,79,1),
+    'light': rgba(130,130,130,1),
+    'light-2': rgba(247,249,251,1),
+);
+
+$black: (
+    'base': rgba(0,0,0,1),
+    'light': rgba(27, 27, 27, 1),
+);
+
+$purpl: (
+    'base': rgba(63,61,86,1),
+);
+
+$white: (
+    'base': rgba(225, 225, 225, 1),
 );

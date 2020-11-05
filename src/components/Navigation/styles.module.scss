@@ -1,0 +1,18 @@
+.root {
+    
+}
+
+.list {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    line-height: 18.75px;
+}
+
+.listItem {
+    color: map-get($black, 'light');
+
+    &:not(:last-child) {
+        margin-right: 30px;
+    }
+}

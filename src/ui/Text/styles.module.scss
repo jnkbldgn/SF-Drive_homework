@@ -8,6 +8,10 @@ $families: (roboto, rubik);
     families: $families;
 }
 
+.root {
+    line-height: inherit;
+}
+
 @each $size in $sizes {
     .size-#{$size} {
         font-size: #{$size}px;

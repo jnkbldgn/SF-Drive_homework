@@ -1,0 +1,13 @@
+.root {
+    @include container();
+    padding: {
+        top: 30px;
+        bottom: 30px;
+    };
+    background-color: map-get($purpl, 'base');
+}
+
+.copyright {
+    color: map-get($white, 'base');
+    line-height: 18.75px;
+}

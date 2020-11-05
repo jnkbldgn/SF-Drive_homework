@@ -1,5 +1,5 @@
 .btn {
-    border: 1px solid map-get($gray, lighten);
+    border: 1px solid map-get($gray, 'dark');
     border-radius: 6px;
     padding: 12px 30px;
 };

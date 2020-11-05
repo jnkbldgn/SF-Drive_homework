@@ -1,7 +1,12 @@
-import Header from 'components/Header';
+import Header from 'layout/Header';
+import Footer from 'layout/Footer';
 
 export default function App() {
   return (
-    <Header />
+    <>
+      <Header />
+      <main />
+      <Footer />
+    </>
   );
 }
