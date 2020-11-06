@@ -2,11 +2,22 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 
 const resolve = (filename) => path.resolve(__dirname, filename);
 const buildDir = 'dist';
 const { NODE_ENV } = process.env;
 const isDev = NODE_ENV !== 'production';
+
+const alias = {
+  root: resolve('./src/'),
+  images: resolve('./public/images/'),
+  icons: resolve('./public/icons/'),
+  styles: resolve('./src/styles/'),
+  ui: resolve('./src/components/ui/'),
+  components: resolve('./src/components/'),
+  layout: resolve('./src/layout/'),
+};
 
 const entry = resolve('./src/index.js');
 
@@ -60,24 +71,34 @@ const rules = [
   },
   {
     test: /\.(svg|png|jp(e)?g)$/,
+    exclude: [alias.icons],
     use: [
       'file-loader',
     ],
   },
+  {
+    test: /\.svg$/,
+    include: [alias.icons],
+    use: [
+      {
+        loader: 'svg-sprite-loader',
+        options: {
+          symbolId: (filePath) => path.basename(filePath),
+        },
+      },
+      'svgo-loader',
+    ],
+  },
 ];
-
-const alias = {
-  root: resolve('./src/'),
-  images: resolve('./public/images/'),
-  styles: resolve('./src/styles/'),
-  ui: resolve('./src/components/ui/'),
-  components: resolve('./src/components/'),
-  layout: resolve('./src/layout/'),
-};
 
 const extensions = ['.jsx', '.js', '.json', '.scss'];
 
 const plugins = [
+  // new SpriteLoaderPlugin(
+  //   {
+  //     plainSprite: true,
+  //   },
+  // ),
   new MiniCssExtractPlugin({
     filename: '[name][contenthash:8].css',
   }),
@@ -93,6 +114,7 @@ const devServer = {
 
 module.exports = {
   mode: NODE_ENV,
+  target: 'web',
   entry,
   output,
   module: {

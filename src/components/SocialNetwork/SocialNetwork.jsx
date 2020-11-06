@@ -1,6 +1,7 @@
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import Link from 'ui/Link';
+import Icon from 'ui/Icon';
 import styles from './styles.module.scss';
 import { SocialNetworkModel } from './models';
 
@@ -19,7 +20,10 @@ export default function SocialNetwork(props) {
       <Link
         href={url}
       >
-        {icon}
+        <Icon
+          className={styles.icon}
+          name={icon}
+        />
       </Link>
     </li>
   ));
