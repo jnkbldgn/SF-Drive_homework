@@ -1,6 +1,8 @@
-export function LinkModel(text, url) {
-  this.text = text;
-  this.url = url;
+export class LinkModel {
+  constructor(text, url) {
+    this.text = text;
+    this.url = url;
+  }
 }
 
 export default {

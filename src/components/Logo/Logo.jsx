@@ -9,8 +9,8 @@ export default function Logo() {
       href="/"
     >
       <Image
-        alt="SkillDrive"
-        src="images/logo.svg"
+        alt="skillDrive"
+        name="logo.svg"
       />
     </Link>
   );

@@ -21,6 +21,6 @@
         "import/no-unresolved": [2, {"commonjs": true}],
         "react/react-in-jsx-scope": "off",
         "react/button-has-type": "off",
-        "no-console": ["error", { "allow": ["warn", "error"] }]
+        "no-console": ["error", { "allow": ["warn", "error", "info"] }]
     }
 }

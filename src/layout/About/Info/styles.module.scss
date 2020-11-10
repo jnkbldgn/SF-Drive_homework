@@ -1,0 +1,24 @@
+.info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    &TeamImg {
+        max-width: 268px;
+        max-height: 202px;
+    }
+
+    &Description {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin-top: 40px;
+    
+        &Text {
+            max-width: 925px;
+        }
+    }
+}
+

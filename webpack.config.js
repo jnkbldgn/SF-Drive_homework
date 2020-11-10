@@ -2,7 +2,6 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 
 const resolve = (filename) => path.resolve(__dirname, filename);
 const buildDir = 'dist';
@@ -36,6 +35,21 @@ const sassLoader = {
   },
 };
 
+const cssLoader = {
+  loader: 'css-loader',
+  options: {
+    modules: true,
+    sourceMap: isDev,
+  },
+};
+
+const fileLoader = {
+  loader: 'file-loader',
+  options: {
+    name: '[path][name].[ext]?v=[contenthash]',
+  },
+};
+
 const rules = [
   {
     test: /\.js[x]?$/i,
@@ -50,13 +64,7 @@ const rules = [
     test: /\.module\.s(a|c)ss$/i,
     use: [
       styleLoader,
-      {
-        loader: 'css-loader',
-        options: {
-          modules: true,
-          sourceMap: isDev,
-        },
-      },
+      cssLoader,
       sassLoader,
     ],
   },
@@ -73,7 +81,7 @@ const rules = [
     test: /\.(svg|png|jp(e)?g)$/,
     exclude: [alias.icons],
     use: [
-      'file-loader',
+      fileLoader,
     ],
   },
   {
@@ -94,11 +102,6 @@ const rules = [
 const extensions = ['.jsx', '.js', '.json', '.scss'];
 
 const plugins = [
-  // new SpriteLoaderPlugin(
-  //   {
-  //     plainSprite: true,
-  //   },
-  // ),
   new MiniCssExtractPlugin({
     filename: '[name][contenthash:8].css',
   }),
@@ -114,7 +117,6 @@ const devServer = {
 
 module.exports = {
   mode: NODE_ENV,
-  target: 'web',
   entry,
   output,
   module: {

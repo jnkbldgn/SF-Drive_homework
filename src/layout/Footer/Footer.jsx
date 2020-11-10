@@ -14,7 +14,7 @@ export default function Footer(props) {
         className={styles.copyright}
         size="16"
         weight="400"
-        tag="div"
+        tag="span"
       >
         © SkillDrive Inc. 2020
       </Text>

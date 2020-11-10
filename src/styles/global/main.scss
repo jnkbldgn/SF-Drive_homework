@@ -5,6 +5,7 @@
     min-height: inherit;
 
     main {
+        @include container();
         flex-grow: 1;
     }
 }

@@ -31,6 +31,7 @@ const tags = [
   'h5',
   'h6',
   'p',
+  'article',
 ];
 
 const sizesProps = styles.sizes.split(', ');

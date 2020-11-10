@@ -12,7 +12,7 @@ export default function Icon(props) {
         setId(icon.id);
         setViewBox(icon.viewBox);
       })
-      .catch(() => console.error(`Error require icon ${name}`));
+      .catch(() => console.error(`Error load icon ${name}`));
   }, [name]);
 
   return (
