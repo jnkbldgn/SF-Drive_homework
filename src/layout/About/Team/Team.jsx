@@ -1,6 +1,7 @@
 import Text from 'ui/Text';
 import Picture from 'ui/Picture';
 import { Member } from './models';
+import styles from './styles.module.scss';
 
 export default function Team() {
   const members = [
@@ -13,18 +14,33 @@ export default function Team() {
   ];
 
   const elements = members.map((item) => (
-    <li key={item.imageName}>
+    <li key={item.imageName} className={styles.teamMember}>
       <Picture
         alt={item.specialty}
         name={item.imageName}
         ext={item.imageExt}
         platform="all"
         ratio="3"
+        className={styles.teamMemberAvatar}
       />
+      <Text
+        size="16"
+        weight="500"
+        className={styles.teamMemberName}
+      >
+        {item.name}
+      </Text>
+      <Text
+        size="12"
+        weight="500"
+        className={styles.teamMemberSpecialty}
+      >
+        {item.specialty}
+      </Text>
     </li>
   ));
   return (
-    <section>
+    <section className={styles.team}>
       <header>
         <Text
           tag="h2"
@@ -34,7 +50,7 @@ export default function Team() {
           Команда
         </Text>
       </header>
-      <ul>
+      <ul className={styles.teamMembers}>
         {elements}
       </ul>
     </section>

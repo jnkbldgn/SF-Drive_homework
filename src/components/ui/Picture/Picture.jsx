@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import cn from 'classnames';
 import { PLATFORMS, MODIFIERS, MEDIA } from './constants';
 
 function addModifiersDesktop(name, platform) {
@@ -42,7 +43,7 @@ function getSrcset(arr) {
 
 export default function Picture(props) {
   const {
-    name, ext, alt, ratio, platform,
+    name, ext, alt, ratio, platform, className,
   } = props;
   const [srcsetMobile, setSrcsetMobile] = useState([]);
   const [srcsetDesktop, setSrcsetDesktop] = useState([]);
@@ -76,7 +77,9 @@ export default function Picture(props) {
   ) : null;
 
   return (
-    <picture>
+    <picture
+      className={cn(className)}
+    >
       {sourceMobile}
       {sourceDesktop}
       <img
@@ -93,9 +96,11 @@ Picture.propTypes = {
   alt: PropTypes.string.isRequired,
   ratio: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   platform: PropTypes.oneOf(Object.values(PLATFORMS)),
+  className: PropTypes.string,
 };
 
 Picture.defaultProps = {
   ratio: 0,
   platform: PLATFORMS.NONE,
+  className: '',
 };
