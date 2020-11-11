@@ -70,7 +70,7 @@ const rules = [
   },
   {
     test: /\.s[ca]ss$/i,
-    exclude: /\.module.(s(a|c)ss)$/,
+    exclude: /\.module.(s(a|c)ss)$/i,
     use: [
       styleLoader,
       'css-loader',
@@ -78,7 +78,7 @@ const rules = [
     ],
   },
   {
-    test: /\.(svg|png|jp(e)?g)$/,
+    test: /\.(svg|png|jp(e)?g)$/i,
     exclude: [alias.icons],
     use: [
       fileLoader,
