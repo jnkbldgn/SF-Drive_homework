@@ -10,7 +10,7 @@ const webpackConfig = require(rootResolve('./webpack.config.js'));
 module.exports = () => {
   webpackConfig.entry.app = [
     'webpack-hot-middleware/client',
-    webpackConfig.entry,
+    webpackConfig.entry.app,
   ];
   webpackConfig.plugins.push(
     new webpack.HotModuleReplacementPlugin(),

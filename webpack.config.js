@@ -18,7 +18,9 @@ const alias = {
   layout: resolve('./client/layout/'),
 };
 
-const entry = resolve('./client/index.js');
+const entry = {
+  app: resolve('./client/index.js'),
+};
 
 const output = {
   path: resolve(`./${buildDir}`),

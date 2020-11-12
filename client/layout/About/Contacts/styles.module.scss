@@ -9,4 +9,19 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    .contact {
+        margin-top: 20px;
+        text-align: center;
+
+        &Title {
+            line-height: 18px;
+            color: map-get($gray, 'base');
+        }
+
+        &Value {
+            line-height: 21px;
+            color: map-get($black, 'base');
+        }
+    }
 }

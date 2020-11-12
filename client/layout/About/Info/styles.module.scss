@@ -8,22 +8,22 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
+
     &TeamImg {
         max-width: 268px;
         max-height: 202px;
     }
 
-    &Description {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+    &Title {
         text-align: center;
         margin-top: 40px;
-    
-        &Text {
-            max-width: 925px;
-        }
+        margin-bottom: 10px;
+        line-height: 38px;
+    }
+
+    &Text {
+        text-align: center;
+        max-width: 925px;
     }
 }
 

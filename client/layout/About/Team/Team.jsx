@@ -45,7 +45,7 @@ export default function Team() {
         <Text
           tag="h2"
           weight="500"
-          size="32"
+          size="24"
         >
           Команда
         </Text>

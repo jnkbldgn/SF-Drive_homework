@@ -12,6 +12,7 @@ export default function Contacts(props) {
   ];
   const contacts = contactsModels.map((item) => (
     <article
+      key={item.title}
       className={styles.contact}
     >
       <Text
@@ -38,6 +39,7 @@ export default function Contacts(props) {
         <Text
           weight="500"
           size="24"
+          tag="h2"
         >
           Контакты
         </Text>
