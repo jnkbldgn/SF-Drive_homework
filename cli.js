@@ -105,7 +105,7 @@ const { argv: ARGV } = yargs(hideBin(process.argv))
         if (err && err.code === 'ENOENT') {
           switch (err.code) {
             case 'ENOENT': {
-              fs.mkdirSync(resolve(err.path, createdCallback));
+              fs.mkdirSync(resolve(err.path));
               break;
             }
             default: {
