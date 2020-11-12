@@ -82,6 +82,7 @@ const { argv: ARGV } = yargs(hideBin(process.argv))
         );
     },
     (argv) => {
+      console.info('aaa');
       const template = argv.class ? classTemplate : funcTemplate;
       const styleReg = argv.style ? new RegExp('{styles}') : new RegExp('{styles}\\n');
       const styleValue = argv.style ? stylesTemplate : '';
@@ -125,4 +126,4 @@ const { argv: ARGV } = yargs(hideBin(process.argv))
         }
       });
     },
-  );
+  ).help();

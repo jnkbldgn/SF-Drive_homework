@@ -1,0 +1,12 @@
+.contacts {
+    background-color: map-get($gray, 'light-2');
+    @include container();
+    padding: {
+        top: 40px;
+        bottom: 40px;
+    }
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
