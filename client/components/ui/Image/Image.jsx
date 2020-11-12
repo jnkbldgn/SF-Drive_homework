@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import styles from 'ui/Image/styles.module';
 import cn from 'classnames';
+import styles from './styles.module.scss';
 
 export default function Image(props) {
   const { name, alt, className } = props;

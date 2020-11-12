@@ -9,16 +9,16 @@ const { NODE_ENV } = process.env;
 const isDev = NODE_ENV !== 'production';
 
 const alias = {
-  root: resolve('./src/'),
+  root: resolve('./client/'),
   images: resolve('./public/images/'),
   icons: resolve('./public/icons/'),
-  styles: resolve('./src/styles/'),
-  ui: resolve('./src/components/ui/'),
-  components: resolve('./src/components/'),
-  layout: resolve('./src/layout/'),
+  styles: resolve('./client/styles/'),
+  ui: resolve('./client/components/ui/'),
+  components: resolve('./client/components/'),
+  layout: resolve('./client/layout/'),
 };
 
-const entry = resolve('./src/index.js');
+const entry = resolve('./client/index.js');
 
 const output = {
   path: resolve(`./${buildDir}`),
@@ -106,7 +106,7 @@ const plugins = [
     filename: '[name][contenthash:8].css',
   }),
   new HtmlWebpackPlugin({
-    template: resolve('./src/index.html'),
+    template: resolve('./client/index.html'),
   }),
 ];
 
