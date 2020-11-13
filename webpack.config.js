@@ -2,6 +2,9 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const TerserWebpackPlugin = require('terser-webpack-plugin');
+const SimpleProgressWebpackPlugin = require('simple-progress-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const resolve = (filename) => path.resolve(__dirname, filename);
 const buildDir = 'dist';
@@ -12,6 +15,7 @@ const alias = {
   root: resolve('./client/'),
   images: resolve('./public/images/'),
   icons: resolve('./public/icons/'),
+  router: resolve('./client/router/'),
   styles: resolve('./client/styles/'),
   ui: resolve('./client/components/ui/'),
   components: resolve('./client/components/'),
@@ -110,6 +114,9 @@ const plugins = [
   new HtmlWebpackPlugin({
     template: resolve('./client/index.html'),
   }),
+  new SimpleProgressWebpackPlugin({
+    format: 'minimal',
+  }),
 ];
 
 const devServer = {
@@ -117,14 +124,41 @@ const devServer = {
   port: 8080,
 };
 
+const optimization = {
+  minimize: !isDev,
+  minimizer: [
+    new TerserWebpackPlugin({
+      parallel: true,
+      extractComments: true,
+    }),
+  ],
+  splitChunks: {
+    chunks: 'all',
+    minSize: 100000,
+    maxSize: 250000,
+    cacheGroups: {
+      vendors: {
+        test: /\/node_modules\//,
+        priority: -10,
+      },
+    },
+  },
+};
+
+if (!isDev) {
+  plugins.push(new CleanWebpackPlugin());
+}
+
 module.exports = {
   mode: NODE_ENV,
+  devtool: isDev && 'inline-source-map',
+  stats: 'minimal',
   entry,
   output,
+  optimization,
   module: {
     rules,
   },
-  devtool: isDev && 'inline-source-map',
   resolve: {
     alias,
     extensions,
