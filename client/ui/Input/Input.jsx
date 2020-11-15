@@ -6,7 +6,7 @@ import styles from './styles.module.scss';
 
 export default function Input(props) {
   const {
-    defaultValue, name, placeholder, type, className, id,
+    defaultValue, name, placeholder, type, className, id, onChange,
   } = props;
   const [isFocus, setFocus] = useState(false);
 
@@ -28,6 +28,7 @@ export default function Input(props) {
         defaultProps={defaultValue}
         onFocus={onFocus}
         onBlur={onBlur}
+        onChange={onChange}
       />
     </div>
   );
@@ -40,6 +41,7 @@ Input.propTypes = {
   className: PropTypes.string,
   id: PropTypes.string,
   defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  onChange: PropTypes.func.isRequired,
 };
 
 Input.defaultProps = {

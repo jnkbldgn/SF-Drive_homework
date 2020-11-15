@@ -22,6 +22,7 @@
         "react/react-in-jsx-scope": "off",
         "react/button-has-type": "off",
         "no-console": ["error", { "allow": ["warn", "error", "info"] }],
-        "import/no-extraneous-dependencies": ["error", {"devDependencies": ["cli.js"]}]
+        "import/no-extraneous-dependencies": ["error", {"devDependencies": ["cli.js"]}],
+        "react/forbid-prop-types": "off"
     }
 }

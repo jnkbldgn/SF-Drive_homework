@@ -1,13 +1,45 @@
 import cn from 'classnames';
 import PropTypes from 'prop-types';
+import { Controller } from 'react-hook-form';
 import Input from 'ui/Input';
 import Text from 'ui/Text';
 import styles from './styles.module.scss';
 
 export default function Field(props) {
   const {
-    className, id, label, name, type, placeholder, defaultValue,
+    className, id, label, name, type, placeholder, defaultValue, control, error, required, pattern,
   } = props;
+
+  const rules = {};
+
+  if (required) {
+    rules.required = 'Обязательное поле';
+  }
+
+  if (pattern) {
+    rules.pattern = {
+      value: pattern,
+      message: 'Неверный формат',
+    };
+  }
+
+  const hasError = typeof error.message !== 'undefined';
+  const inputClasses = cn({
+    [styles.fieldInput]: true,
+    [styles.fieldInputError]: hasError,
+  });
+
+  const inputRender = (inputProps) => (
+    <Input
+      id={id}
+      name={name}
+      type={type}
+      placeholder={placeholder}
+      className={inputClasses}
+      defaultValue={defaultValue}
+      onChange={(event) => inputProps.onChange(event.target.value)}
+    />
+  );
 
   return (
     <div
@@ -25,14 +57,26 @@ export default function Field(props) {
           {label}
         </Text>
       </label>
-      <Input
-        className={styles.fieldInput}
-        id={id}
+      <Controller
         name={name}
-        type={type}
-        placeholder={placeholder}
+        control={control}
         defaultValue={defaultValue}
+        rules={rules}
+        render={inputRender}
       />
+      {
+        hasError
+        && (
+        <Text
+          tag="span"
+          size="14"
+          className={styles.fieldError}
+          weight="400"
+        >
+          {error.message}
+        </Text>
+        )
+      }
     </div>
   );
 }
@@ -45,6 +89,10 @@ Field.propTypes = {
   id: PropTypes.string,
   defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   label: PropTypes.string.isRequired,
+  control: PropTypes.object.isRequired,
+  error: PropTypes.object,
+  required: PropTypes.bool,
+  pattern: PropTypes.any,
 };
 
 Field.defaultProps = {
@@ -53,4 +101,7 @@ Field.defaultProps = {
   className: '',
   defaultValue: '',
   id: '',
+  error: {},
+  required: false,
+  pattern: '',
 };

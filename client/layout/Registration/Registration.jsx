@@ -1,11 +1,16 @@
 import Text from 'ui/Text';
 import Button from 'ui/Button';
+import { useForm } from 'react-hook-form';
 import PersonalInfo from './PersonalInfo';
 import IdentityCard from './IdentityCard';
 import DriverLicense from './DriverLicense';
 import styles from './styles.module.scss';
 
 export default function Registration() {
+  const methods = useForm();
+  const { control, errors, handleSubmit } = methods;
+
+  const onSubmit = (data) => console.info(data);
   return (
     <>
       <Text
@@ -24,25 +29,37 @@ export default function Registration() {
       >
         Расскажите о себе
       </Text>
-      <PersonalInfo />
-      <IdentityCard />
-      <DriverLicense />
-      <div
-        className={styles.submit}
-      >
-        <Button
-          color="green"
-          className={styles.submitButton}
+      <form method="POST" onSubmit={handleSubmit(onSubmit)}>
+        <PersonalInfo
+          control={control}
+          errors={errors}
+        />
+        <IdentityCard
+          control={control}
+          errors={errors}
+        />
+        <DriverLicense
+          control={control}
+          errors={errors}
+        />
+        <div
+          className={styles.submit}
         >
-          <Text
-            tag="span"
-            size="16"
-            weight="500"
+          <Button
+            type="submit"
+            color="green"
+            className={styles.submitButton}
           >
-            Продолжить
-          </Text>
-        </Button>
-      </div>
+            <Text
+              tag="span"
+              size="16"
+              weight="500"
+            >
+              Продолжить
+            </Text>
+          </Button>
+        </div>
+      </form>
     </>
   );
 }

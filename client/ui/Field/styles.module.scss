@@ -8,5 +8,15 @@
 
   &Input {
     font-family: 'Roboto';
+
+    &Error{
+      box-shadow: inset 0 0 0 2px map-get($red, 'base')!important;
+    }
+  }
+
+  &Error {
+    line-height: 16px;
+    margin-top: 8px;
+    color: map-get($red, 'base');
   }
 }

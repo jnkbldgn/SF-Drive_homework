@@ -1,8 +1,10 @@
 import Text from 'ui/Text';
 import Field from 'ui/Field';
+import PropTypes from 'prop-types';
 import styles from './styles.module.scss';
 
-export default function PersonalInfo() {
+export default function IdentityCard(props) {
+  const { control, errors } = props;
   return (
     <section
       className={styles.root}
@@ -23,12 +25,17 @@ export default function PersonalInfo() {
           id="number"
           placeholder="0000 000000"
           className={styles.field}
+          control={control}
+          error={errors.number}
         />
         <Field
           label="Дата выдачи"
           name="createAt"
           id="createAt"
           className={styles.field}
+          control={control}
+          error={errors.createAt}
+          pattern={/\d{2}\.\d{2}\.\d{4}/}
         />
         <Field
           label="Кем выдан"
@@ -36,6 +43,8 @@ export default function PersonalInfo() {
           id="authority"
           placeholder="Название органа выдавшего паспорт"
           className={styles.field}
+          control={control}
+          error={errors.authority}
         />
         <Field
           label="Код подразделения"
@@ -43,8 +52,16 @@ export default function PersonalInfo() {
           id="code"
           placeholder="000-000"
           className={styles.field}
+          control={control}
+          error={errors.code}
+          pattern={/\d{3}-\d{3}/}
         />
       </header>
     </section>
   );
 }
+
+IdentityCard.propTypes = {
+  control: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired,
+};
