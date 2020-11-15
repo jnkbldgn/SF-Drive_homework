@@ -17,8 +17,7 @@ const alias = {
   icons: resolve('./public/icons/'),
   router: resolve('./client/router/'),
   styles: resolve('./client/styles/'),
-  ui: resolve('./client/components/ui/'),
-  components: resolve('./client/components/'),
+  ui: resolve('./client/ui/'),
   layout: resolve('./client/layout/'),
 };
 

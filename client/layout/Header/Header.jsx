@@ -1,5 +1,5 @@
-import Logo from 'components/Logo';
-import Navigation from 'components/Navigation';
+import Logo from './Logo';
+import Navigation from './Navigation';
 import styles from './styles.module.scss';
 
 export default function Header() {

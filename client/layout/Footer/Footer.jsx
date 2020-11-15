@@ -1,7 +1,7 @@
 import Text from 'ui/Text';
-import SocialNetwork from 'components/SocialNetwork';
 import cn from 'classnames';
 import PropTypes from 'prop-types';
+import SocialNetwork from './SocialNetwork';
 import styles from './styles.module.scss';
 
 export default function Footer(props) {
