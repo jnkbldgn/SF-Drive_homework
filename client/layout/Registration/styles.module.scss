@@ -1,0 +1,13 @@
+.steps {
+  line-height: 18px;
+  color: map-get($gray, 'light');
+  text-align: center;
+  margin-top: 54px;
+}
+
+.header {
+  line-height: 38px;
+  color: map-get($black, 'light');
+  text-align: center;
+  margin-top: 10px;
+}

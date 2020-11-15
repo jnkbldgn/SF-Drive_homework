@@ -1,0 +1,17 @@
+.input {
+  box-shadow: inset 0px 0px 0px 1px map-get($gray, 'light-2');
+  border-radius: 6px;
+  padding: 14px 12px;
+  line-height: inherit;
+  font-size: inherit;
+  box-sizing: border-box;
+  transition: all .2s ease-in;
+
+  &:hover:not(&Focus) {
+    box-shadow: inset 0px 0px 0px 1px map-get($green, 'base');
+  }
+
+  &Focus {
+    box-shadow: inset 0px 0px 0px 2px map-get($green, 'base');
+  }
+}
