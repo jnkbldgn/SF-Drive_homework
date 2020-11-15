@@ -1,4 +1,5 @@
 import Text from 'ui/Text';
+import PersonalInfo from './PersonalInfo';
 import styles from './styles.module.scss';
 
 export default function Registration() {
@@ -20,6 +21,7 @@ export default function Registration() {
       >
         Расскажите о себе
       </Text>
+      <PersonalInfo />
     </>
   );
 }
