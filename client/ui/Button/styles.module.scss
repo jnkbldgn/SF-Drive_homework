@@ -1,5 +1,39 @@
 .btn {
-    border: 1px solid map-get($gray, 'dark');
     border-radius: 6px;
     padding: 12px 30px;
+    border-width: 0;
+
+    &:hover {
+        cursor: pointer;
+    }
 };
+
+.green {
+    background-color: map-get($green, 'base');
+    color: map-get($white, 'base');
+}
+
+.gray {
+    background-color: map-get($gray, 'dark');
+    color: map-get($gray, 'dark');
+}
+
+.disabled {
+    background-color: map-get($gray, 'light-5');
+    color: map-get($gray, 'light-4');
+}
+
+.outlined {
+    border: 1px solid;
+    background-color: transparent;
+    &.green {
+        border-color: map-get($green, 'base');
+        color: map-get($green, 'base');
+    }
+
+    &.gray {
+        border-color: map-get($gray, 'dark');
+        color: map-get($gray, 'dark');
+    }
+}
+

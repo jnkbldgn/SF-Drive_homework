@@ -11,3 +11,19 @@
   text-align: center;
   margin-top: 10px;
 }
+
+.submit {
+  @include container();
+  padding: {
+    top: 16px;
+    bottom: 17px;
+  };
+  box-shadow: 0 -1px 0 map-get($gray, 'light-6');
+  position: sticky;
+  bottom: 0;
+  background-color: map-get($white, 'base');
+
+  &Button {
+    width: 100%;
+  }
+}

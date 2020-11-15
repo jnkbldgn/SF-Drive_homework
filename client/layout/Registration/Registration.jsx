@@ -1,4 +1,5 @@
 import Text from 'ui/Text';
+import Button from 'ui/Button';
 import PersonalInfo from './PersonalInfo';
 import IdentityCard from './IdentityCard';
 import DriverLicense from './DriverLicense';
@@ -26,6 +27,22 @@ export default function Registration() {
       <PersonalInfo />
       <IdentityCard />
       <DriverLicense />
+      <div
+        className={styles.submit}
+      >
+        <Button
+          color="green"
+          className={styles.submitButton}
+        >
+          <Text
+            tag="span"
+            size="16"
+            weight="500"
+          >
+            Продолжить
+          </Text>
+        </Button>
+      </div>
     </>
   );
 }
