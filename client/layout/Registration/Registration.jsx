@@ -1,6 +1,7 @@
 import Text from 'ui/Text';
 import PersonalInfo from './PersonalInfo';
 import IdentityCard from './IdentityCard';
+import DriverLicense from './DriverLicense';
 import styles from './styles.module.scss';
 
 export default function Registration() {
@@ -24,6 +25,7 @@ export default function Registration() {
       </Text>
       <PersonalInfo />
       <IdentityCard />
+      <DriverLicense />
     </>
   );
 }
