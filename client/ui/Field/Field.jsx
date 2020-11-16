@@ -7,7 +7,18 @@ import styles from './styles.module.scss';
 
 export default function Field(props) {
   const {
-    className, id, label, name, type, placeholder, defaultValue, control, error, required, pattern,
+    className,
+    id,
+    label,
+    name,
+    type,
+    placeholder,
+    defaultValue,
+    control,
+    error,
+    required,
+    pattern,
+    children,
   } = props;
 
   const rules = {};
@@ -38,7 +49,9 @@ export default function Field(props) {
       className={inputClasses}
       defaultValue={defaultValue}
       onChange={(event) => inputProps.onChange(event.target.value)}
-    />
+    >
+      {children}
+    </Input>
   );
 
   return (
@@ -83,15 +96,16 @@ export default function Field(props) {
 
 Field.propTypes = {
   name: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  control: PropTypes.object.isRequired,
   type: PropTypes.string,
   placeholder: PropTypes.string,
   className: PropTypes.string,
   id: PropTypes.string,
   defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  label: PropTypes.string.isRequired,
-  control: PropTypes.object.isRequired,
   error: PropTypes.object,
   required: PropTypes.bool,
+  children: PropTypes.node,
   pattern: PropTypes.any,
 };
 
@@ -103,5 +117,6 @@ Field.defaultProps = {
   id: '',
   error: {},
   required: false,
+  children: null,
   pattern: '',
 };

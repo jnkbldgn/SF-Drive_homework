@@ -1,5 +1,6 @@
 const express = require('express');
 const routes = require('./routes');
+const api = require('./api');
 const { rootResolve } = require('./utils/path');
 
 const app = express();
@@ -18,6 +19,7 @@ if (isDev) {
 
 app.get('/favicon.ico', (req, res) => res.status(200));
 app.use('/public', express.static(rootResolve(__dirname, './public')));
+app.use('/api', api);
 app.use(routes);
 
 app.use((err, req, res) => {

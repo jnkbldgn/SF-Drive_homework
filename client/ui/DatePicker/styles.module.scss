@@ -1,0 +1,11 @@
+.datePicker {
+
+    &Button {
+        
+        &Icon {
+            color: map-get($green, 'base');
+            width: 24px;
+            height: 24px;
+        }
+    }
+}

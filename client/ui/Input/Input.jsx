@@ -6,7 +6,7 @@ import styles from './styles.module.scss';
 
 export default function Input(props) {
   const {
-    defaultValue, name, placeholder, type, className, id, onChange,
+    defaultValue, name, placeholder, type, className, id, onChange, children,
   } = props;
   const [isFocus, setFocus] = useState(false);
 
@@ -30,6 +30,7 @@ export default function Input(props) {
         onBlur={onBlur}
         onChange={onChange}
       />
+      {children}
     </div>
   );
 }
@@ -42,6 +43,7 @@ Input.propTypes = {
   id: PropTypes.string,
   defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onChange: PropTypes.func.isRequired,
+  children: PropTypes.node,
 };
 
 Input.defaultProps = {
@@ -50,4 +52,5 @@ Input.defaultProps = {
   className: '',
   defaultValue: '',
   id: '',
+  children: null,
 };

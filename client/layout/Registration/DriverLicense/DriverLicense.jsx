@@ -1,5 +1,6 @@
 import Text from 'ui/Text';
 import Field from 'ui/Field';
+import DatePicker from 'ui/DatePicker';
 import PropTypes from 'prop-types';
 import styles from './styles.module.scss';
 
@@ -28,7 +29,7 @@ export default function DriverLicense(props) {
           control={control}
           error={errors.numberDriver}
         />
-        <Field
+        <DatePicker
           label="Дата выдачи"
           name="createAtDriver"
           placeholder="00.00.0000"

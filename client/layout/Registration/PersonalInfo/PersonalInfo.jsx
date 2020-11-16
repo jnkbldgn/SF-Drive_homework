@@ -1,4 +1,5 @@
 import Text from 'ui/Text';
+import DatePicker from 'ui/DatePicker';
 import Field from 'ui/Field';
 import PropTypes from 'prop-types';
 import styles from './styles.module.scss';
@@ -28,13 +29,14 @@ export default function PersonalInfo(props) {
           control={control}
           error={errors.fio}
         />
-        <Field
+        <DatePicker
           label="Дата рождения"
           name="birthday"
           id="birthday"
           className={styles.field}
           control={control}
           error={errors.birthday}
+          placeholder="00.00.0000"
           pattern={/\d{2}\.\d{2}\.\d{4}/}
         />
         <Field

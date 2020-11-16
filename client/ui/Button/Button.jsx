@@ -26,7 +26,7 @@ export default function Button(props) {
 
 Button.propTypes = {
   type: PropTypes.oneOf(['reset', 'submit', 'button']),
-  variant: PropTypes.oneOf(['default', 'outlined']),
+  variant: PropTypes.oneOf(['default', 'outlined', 'icon']),
   color: PropTypes.oneOf(['green', 'gray']),
   value: PropTypes.node,
   children: PropTypes.node,

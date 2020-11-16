@@ -4,6 +4,8 @@
 }
 
 .listItem {
+    color: map-get($white, 'base');
+    
     &:not(:last-child) {
         margin-right: 20px;
     }
