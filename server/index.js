@@ -17,6 +17,9 @@ if (isDev) {
   app.use(hotMiddleware);
 }
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 app.get('/favicon.ico', (req, res) => res.status(200));
 app.use('/public', express.static(rootResolve(__dirname, './public')));
 app.use('/api', api);
@@ -28,6 +31,9 @@ app.use((err, req, res) => {
     const { status } = err;
     res.status(status);
     res.send(`Error ${status}`);
+  } else {
+    res.status(200);
+    res.send('Success');
   }
 });
 

@@ -1,8 +1,7 @@
-function register(req, res) {
-  console.info(req);
-  res.type('json');
-  res.status(200);
-  res.send('ok');
+function register(req, res, next) {
+  const { body = {} } = req;
+  console.info(body);
+  next();
 }
 
 module.exports = register;

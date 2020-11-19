@@ -1,6 +1,7 @@
 import Text from 'ui/Text';
 import Button from 'ui/Button';
 import { useForm } from 'react-hook-form';
+import { register } from 'api';
 import PersonalInfo from './PersonalInfo';
 import IdentityCard from './IdentityCard';
 import DriverLicense from './DriverLicense';
@@ -10,7 +11,9 @@ export default function Registration() {
   const methods = useForm();
   const { control, errors, handleSubmit } = methods;
 
-  const onSubmit = (data) => console.info(data);
+  const onSubmit = (data) => {
+    register(data);
+  };
   return (
     <>
       <Text
