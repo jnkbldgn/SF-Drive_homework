@@ -3,12 +3,14 @@ import cn from 'classnames';
 import Field from 'ui/Field';
 import Icon from 'ui/Icon';
 import Button from 'ui/Button';
+import ValidationRule from 'models/ValidationRule';
 import styles from './styles.module.scss';
 
 export default function DatePicker(props) {
   const {
-    className, id, label, name, placeholder, defaultValue, control, error, required, pattern,
+    className, id, label, name, defaultValue, control, error, required, placeholder, validate,
   } = props;
+
   return (
     <div
       className={cn(className, styles.datePicker)}
@@ -22,7 +24,7 @@ export default function DatePicker(props) {
         name={name}
         placeholder={placeholder}
         required={required}
-        pattern={pattern}
+        validate={validate}
       >
         <Button
           className={styles.datePickerButton}
@@ -47,16 +49,21 @@ DatePicker.propTypes = {
   id: PropTypes.string,
   defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   error: PropTypes.object,
-  required: PropTypes.bool,
-  pattern: PropTypes.any,
+  required: PropTypes.instanceOf(ValidationRule),
+  validate: PropTypes.func,
 };
 
+const validate = (value) => {
+  const [day, month, year] = value.split('.');
+  const date = Date.parse(`${month}/${day}/${year}`);
+  return !Number.isNaN(date) || 'Неверный формат даты';
+};
 DatePicker.defaultProps = {
-  placeholder: '',
+  placeholder: '00.00.0000',
   className: '',
   defaultValue: '',
   id: '',
   error: {},
-  required: false,
-  pattern: '',
+  required: new ValidationRule(false, ''),
+  validate,
 };

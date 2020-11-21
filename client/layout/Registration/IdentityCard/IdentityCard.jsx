@@ -2,10 +2,13 @@ import Text from 'ui/Text';
 import DatePicker from 'ui/DatePicker';
 import Field from 'ui/Field';
 import PropTypes from 'prop-types';
+import ValidationRule from 'models/ValidationRule';
 import styles from './styles.module.scss';
 
 export default function IdentityCard(props) {
   const { control, errors } = props;
+  const codePattern = new ValidationRule(/\d{3}-\d{3}/, 'Неверный формат');
+  const requiredRule = new ValidationRule(true, 'Обязательное поле');
   return (
     <section
       className={styles.root}
@@ -28,6 +31,7 @@ export default function IdentityCard(props) {
           className={styles.field}
           control={control}
           error={errors.number}
+          required={requiredRule}
         />
         <DatePicker
           label="Дата выдачи"
@@ -36,8 +40,7 @@ export default function IdentityCard(props) {
           className={styles.field}
           control={control}
           error={errors.createAt}
-          placeholder="00.00.0000"
-          pattern={/\d{2}\.\d{2}\.\d{4}/}
+          required={requiredRule}
         />
         <Field
           label="Кем выдан"
@@ -47,6 +50,7 @@ export default function IdentityCard(props) {
           className={styles.field}
           control={control}
           error={errors.authority}
+          required={requiredRule}
         />
         <Field
           label="Код подразделения"
@@ -56,7 +60,8 @@ export default function IdentityCard(props) {
           className={styles.field}
           control={control}
           error={errors.code}
-          pattern={/\d{3}-\d{3}/}
+          pattern={codePattern}
+          required={requiredRule}
         />
       </header>
     </section>

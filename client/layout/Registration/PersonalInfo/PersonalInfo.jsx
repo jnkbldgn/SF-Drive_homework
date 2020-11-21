@@ -2,10 +2,13 @@ import Text from 'ui/Text';
 import DatePicker from 'ui/DatePicker';
 import Field from 'ui/Field';
 import PropTypes from 'prop-types';
+import ValidationRule from 'models/ValidationRule';
 import styles from './styles.module.scss';
 
 export default function PersonalInfo(props) {
   const { control, errors } = props;
+  const mailPattern = new ValidationRule(/.+@.+/, 'Неверный формат email');
+  const requiredRule = new ValidationRule(true, 'Обязательное поле');
   return (
     <section
       className={styles.root}
@@ -28,6 +31,7 @@ export default function PersonalInfo(props) {
           className={styles.field}
           control={control}
           error={errors.fio}
+          required={requiredRule}
         />
         <DatePicker
           label="Дата рождения"
@@ -36,8 +40,7 @@ export default function PersonalInfo(props) {
           className={styles.field}
           control={control}
           error={errors.birthday}
-          placeholder="00.00.0000"
-          pattern={/\d{2}\.\d{2}\.\d{4}/}
+          required={requiredRule}
         />
         <Field
           label="Электронная почта"
@@ -47,6 +50,8 @@ export default function PersonalInfo(props) {
           className={styles.field}
           control={control}
           error={errors.email}
+          required={requiredRule}
+          pattern={mailPattern}
         />
         <Field
           label="Телефон"
@@ -56,6 +61,7 @@ export default function PersonalInfo(props) {
           className={styles.field}
           control={control}
           error={errors.phone}
+          required={requiredRule}
         />
       </header>
     </section>

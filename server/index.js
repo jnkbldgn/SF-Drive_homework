@@ -20,7 +20,7 @@ if (isDev) {
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.get('/favicon.ico', (req, res) => res.status(200));
+app.get('/favicon.ico', (req, res) => res.send('SF'));
 app.use('/public', express.static(rootResolve(__dirname, './public')));
 app.use('/api', api);
 app.use(routes);

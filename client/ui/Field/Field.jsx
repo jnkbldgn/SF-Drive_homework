@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Controller } from 'react-hook-form';
 import Input from 'ui/Input';
 import Text from 'ui/Text';
+import ValidationRule from 'models/ValidationRule';
 import styles from './styles.module.scss';
 
 export default function Field(props) {
@@ -18,21 +19,15 @@ export default function Field(props) {
     error,
     required,
     pattern,
+    validate,
     children,
   } = props;
 
-  const rules = {};
-
-  if (required) {
-    rules.required = 'Обязательное поле';
-  }
-
-  if (pattern) {
-    rules.pattern = {
-      value: pattern,
-      message: 'Неверный формат',
-    };
-  }
+  const rules = {
+    required,
+    pattern,
+    validate,
+  };
 
   const hasError = typeof error.message !== 'undefined';
   const inputClasses = cn({
@@ -104,9 +99,10 @@ Field.propTypes = {
   id: PropTypes.string,
   defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   error: PropTypes.object,
-  required: PropTypes.bool,
   children: PropTypes.node,
-  pattern: PropTypes.any,
+  required: PropTypes.instanceOf(ValidationRule),
+  pattern: PropTypes.instanceOf(ValidationRule),
+  validate: PropTypes.func,
 };
 
 Field.defaultProps = {
@@ -116,7 +112,8 @@ Field.defaultProps = {
   defaultValue: '',
   id: '',
   error: {},
-  required: false,
   children: null,
-  pattern: '',
+  required: new ValidationRule(false, ''),
+  pattern: new ValidationRule(false, ''),
+  validate: undefined,
 };
