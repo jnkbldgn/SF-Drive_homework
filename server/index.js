@@ -25,16 +25,33 @@ app.use('/public', express.static(rootResolve(__dirname, './public')));
 app.use('/api', api);
 app.use(routes);
 
-app.use((err, req, res) => {
-  if (err) {
-    console.error(err);
-    const { status } = err;
-    res.status(status);
-    res.send(`Error ${status}`);
-  } else {
-    res.status(200);
-    res.send('Success');
+app.use((error, req, res, next) => {
+  if (res.headersSent) {
+    next(error);
+    return;
   }
+  const {
+    status = 500,
+    message = 'Internal Server Error',
+    stack = '',
+    options = {},
+  } = error;
+
+  const body = {
+    stack,
+    message,
+    options,
+  };
+
+  if (isDev) {
+    body.stack = stack;
+  }
+
+  console.error('Error  status:', body.status);
+  console.error('Error  message:', body.message);
+
+  res.status(status);
+  res.json(body);
 });
 
 app.listen(port, () => console.info(`App listening at http://localhost:${port}`));
