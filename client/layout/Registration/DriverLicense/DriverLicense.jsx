@@ -7,7 +7,6 @@ import styles from './styles.module.scss';
 
 export default function DriverLicense(props) {
   const { control, errors } = props;
-  const datePattern = new ValidationRule(/\d{2}\.\d{2}\.\d{4}/, 'Неверный формат');
   const requiredRule = new ValidationRule(true, 'Обязательное поле');
   return (
     <section
@@ -25,21 +24,21 @@ export default function DriverLicense(props) {
         </Text>
         <Field
           label="Серия и номер"
-          name="numberDriver"
-          id="numberDriver"
+          name="driverLicenseNumber"
+          id="driverLicenseNumber"
           placeholder="0000 000000"
           className={styles.field}
           control={control}
-          error={errors.numberDriver}
+          error={errors.driverLicenseNumber}
           required={requiredRule}
         />
         <DatePicker
           label="Дата выдачи"
-          name="createAtDriver"
-          id="createAtDriver"
+          name="driverLicenseCreateAt"
+          id="driverLicenseCreateAt"
           className={styles.field}
           control={control}
-          error={errors.createAtDriver}
+          error={errors.driverLicenseCreateAt}
           required={requiredRule}
         />
       </header>

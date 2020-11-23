@@ -25,41 +25,41 @@ export default function IdentityCard(props) {
         </Text>
         <Field
           label="Серия и номер"
-          name="number"
-          id="number"
+          name="identityCardNumber"
+          id="identityCardNumber"
           placeholder="0000 000000"
           className={styles.field}
           control={control}
-          error={errors.number}
+          error={errors.identityCardNumber}
           required={requiredRule}
         />
         <DatePicker
           label="Дата выдачи"
-          name="createAt"
-          id="createAt"
+          name="identityCardCreateAt"
+          id="identityCardCreateAt"
           className={styles.field}
           control={control}
-          error={errors.createAt}
+          error={errors.identityCardCreateAt}
           required={requiredRule}
         />
         <Field
           label="Кем выдан"
-          name="authority"
-          id="authority"
+          name="identityCardAuthority"
+          id="identityCardAuthority"
           placeholder="Название органа выдавшего паспорт"
           className={styles.field}
           control={control}
-          error={errors.authority}
+          error={errors.identityCardAuthority}
           required={requiredRule}
         />
         <Field
           label="Код подразделения"
-          name="code"
-          id="code"
+          name="identityCardCode"
+          id="identityCardCode"
           placeholder="000-000"
           className={styles.field}
           control={control}
-          error={errors.code}
+          error={errors.identityCardCode}
           pattern={codePattern}
           required={requiredRule}
         />
