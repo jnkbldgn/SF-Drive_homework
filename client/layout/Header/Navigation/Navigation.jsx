@@ -1,5 +1,6 @@
 import Text from 'ui/Text';
 import Link from 'ui/Link';
+import Button from 'ui/Button';
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import styles from './styles.module.scss';
@@ -32,11 +33,28 @@ export default function Navigation(props) {
   ));
 
   return (
-    <nav className={cn(className, styles.root)}>
-      <ul className={styles.list}>
-        {listItems}
-      </ul>
-    </nav>
+    <div className={cn(className, styles.root)}>
+      <nav className={styles.nav}>
+        <ul className={styles.list}>
+          {listItems}
+          <li
+            className={styles.listItem}
+          />
+        </ul>
+      </nav>
+      <Button
+        className={styles.signIn}
+        variant="outlined"
+        color="gray"
+      >
+        <Text
+          size="16"
+          weight="500"
+        >
+          Войти
+        </Text>
+      </Button>
+    </div>
   );
 }
 

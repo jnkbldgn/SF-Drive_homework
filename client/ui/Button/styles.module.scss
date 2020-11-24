@@ -3,6 +3,7 @@
     padding: 12px 30px;
     border-width: 0;
     outline: none;
+    border: none;
     user-select: none;
 
     &:hover {
@@ -36,7 +37,7 @@
 
     &.gray {
         border-color: map-get($gray, 'dark');
-        color: map-get($gray, 'dark');
+        color: map-get($black, 'light');
     }
 }
 

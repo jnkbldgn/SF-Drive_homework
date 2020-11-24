@@ -10,5 +10,13 @@
 }
 
 .navigation {
-    display: none;
+    overflow: hidden;
+    width: 0;
+    opacity: 0;
+
+    @include desktop {
+        overflow: visible;
+        width: auto;
+        opacity: 1;
+    }
 }

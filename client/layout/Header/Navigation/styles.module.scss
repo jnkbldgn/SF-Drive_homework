@@ -1,5 +1,7 @@
 .root {
-    
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .list {
@@ -15,4 +17,9 @@
     &:not(:last-child) {
         margin-right: 30px;
     }
+}
+
+.signIn {
+    line-height: 19px;
+    margin-left: 40px;
 }
