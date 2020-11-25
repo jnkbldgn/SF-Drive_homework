@@ -21,6 +21,8 @@ const alias = {
   layout: resolve('./client/layout/'),
   api: resolve('./client/api/'),
   models: resolve('./client/models/'),
+  utils: resolve('./client/utils/'),
+  constants: resolve('./client/constants/'),
 };
 
 const entry = {

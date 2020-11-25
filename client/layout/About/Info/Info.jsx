@@ -1,6 +1,13 @@
 import Image from 'ui/Image';
 import Text from 'ui/Text';
+import PropOfDevice from 'models/PropOfDevice';
+import { MOBILE_BREAK_POINT as BREAK_POINT } from 'constants';
 import styles from './styles.module.scss';
+
+const titleSize = new PropOfDevice(64, 32, BREAK_POINT);
+const titleWeidth = new PropOfDevice(700, 500, BREAK_POINT);
+
+const textSize = new PropOfDevice(24, 16, BREAK_POINT);
 
 export default function Info() {
   return (
@@ -12,8 +19,8 @@ export default function Info() {
       />
       <Text
         tag="h1"
-        weight="500"
-        size="32"
+        weight={titleWeidth}
+        size={titleSize}
         className={styles.infoTitle}
       >
         О нас
@@ -21,7 +28,7 @@ export default function Info() {
       <Text
         tag="p"
         weight="400"
-        size="16"
+        size={textSize}
         className={styles.infoText}
       >
         Это учебный проект, созданный с целью получения боевого
