@@ -3,22 +3,29 @@ import Field from 'ui/Field';
 import DatePicker from 'ui/DatePicker';
 import PropTypes from 'prop-types';
 import ValidationRule from 'models/ValidationRule';
-import styles from './styles.module.scss';
+import PropOfDevice from 'models/PropOfDevice';
+import { MOBILE_BREAK_POINT as BREAK_POINT } from 'constants';
+import cn from 'classnames';
+import styles from '../form.block.module.scss';
+
+const titleSize = new PropOfDevice(36, 24, BREAK_POINT);
+
+const titleWeight = new PropOfDevice(400, 500, BREAK_POINT);
 
 export default function DriverLicense(props) {
-  const { control, errors } = props;
+  const { control, errors, className } = props;
   const requiredRule = new ValidationRule(true, 'Обязательное поле');
   return (
     <section
-      className={styles.root}
+      className={cn(styles.root, className)}
     >
       <header
-        className={styles.header}
+        className={styles.title}
       >
         <Text
           tag="h2"
-          size="24"
-          weight="500"
+          size={titleSize}
+          weight={titleWeight}
         >
           Водительское удостоверение
         </Text>
@@ -28,6 +35,8 @@ export default function DriverLicense(props) {
           id="driverLicenseNumber"
           placeholder="0000 000000"
           className={styles.field}
+          labelClassName={styles.fieldLabel}
+          inputClassName={styles.fieldInputS}
           control={control}
           error={errors.driverLicenseNumber}
           required={requiredRule}
@@ -37,6 +46,8 @@ export default function DriverLicense(props) {
           name="driverLicenseCreateAt"
           id="driverLicenseCreateAt"
           className={styles.field}
+          labelClassName={styles.fieldLabel}
+          inputClassName={styles.fieldInputS}
           control={control}
           error={errors.driverLicenseCreateAt}
           required={requiredRule}
@@ -49,4 +60,9 @@ export default function DriverLicense(props) {
 DriverLicense.propTypes = {
   control: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
+  className: PropTypes.string,
+};
+
+DriverLicense.defaultProps = {
+  className: undefined,
 };

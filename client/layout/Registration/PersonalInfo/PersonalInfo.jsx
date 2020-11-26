@@ -3,23 +3,32 @@ import DatePicker from 'ui/DatePicker';
 import Field from 'ui/Field';
 import PropTypes from 'prop-types';
 import ValidationRule from 'models/ValidationRule';
-import styles from './styles.module.scss';
+import PropOfDevice from 'models/PropOfDevice';
+import { MOBILE_BREAK_POINT as BREAK_POINT } from 'constants';
+import cn from 'classnames';
+import styles from '../form.block.module.scss';
+
+const mailReg = /.+@.+/;
+
+const titleSize = new PropOfDevice(36, 24, BREAK_POINT);
+
+const titleWeight = new PropOfDevice(400, 500, BREAK_POINT);
 
 export default function PersonalInfo(props) {
-  const { control, errors } = props;
-  const mailPattern = new ValidationRule(/.+@.+/, 'Неверный формат email');
+  const { control, errors, className } = props;
+  const mailPattern = new ValidationRule(mailReg, 'Неверный формат email');
   const requiredRule = new ValidationRule(true, 'Обязательное поле');
   return (
     <section
-      className={styles.root}
+      className={cn(styles.root, className)}
     >
       <header
-        className={styles.header}
+        className={styles.title}
       >
         <Text
           tag="h2"
-          size="24"
-          weight="500"
+          size={titleSize}
+          weight={titleWeight}
         >
           Информация о вас
         </Text>
@@ -29,6 +38,8 @@ export default function PersonalInfo(props) {
           id="fio"
           placeholder="ФИО полностью"
           className={styles.field}
+          labelClassName={styles.fieldLabel}
+          inputClassName={styles.fieldInputL}
           control={control}
           error={errors.fio}
           required={requiredRule}
@@ -38,6 +49,8 @@ export default function PersonalInfo(props) {
           name="birthday"
           id="birthday"
           className={styles.field}
+          labelClassName={styles.fieldLabel}
+          inputClassName={styles.fieldInputS}
           control={control}
           error={errors.birthday}
           required={requiredRule}
@@ -48,6 +61,8 @@ export default function PersonalInfo(props) {
           id="email"
           placeholder="mail@example.com"
           className={styles.field}
+          labelClassName={styles.fieldLabel}
+          inputClassName={styles.fieldInputL}
           control={control}
           error={errors.email}
           required={requiredRule}
@@ -59,6 +74,8 @@ export default function PersonalInfo(props) {
           id="phone"
           placeholder="+7 900 000-00-00"
           className={styles.field}
+          labelClassName={styles.fieldLabel}
+          inputClassName={styles.fieldInputS}
           control={control}
           error={errors.phone}
           required={requiredRule}
@@ -71,4 +88,9 @@ export default function PersonalInfo(props) {
 PersonalInfo.propTypes = {
   control: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
+  className: PropTypes.string,
+};
+
+PersonalInfo.defaultProps = {
+  className: undefined,
 };

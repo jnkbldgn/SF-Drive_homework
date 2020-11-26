@@ -21,6 +21,9 @@ export default function Field(props) {
     pattern,
     validate,
     children,
+    labelClassName,
+    inputClassName,
+    errorClassName,
   } = props;
 
   const rules = {
@@ -29,24 +32,41 @@ export default function Field(props) {
     validate,
   };
 
-  const hasError = typeof error.message !== 'undefined';
+  const hasError = error && error.message;
   const inputClasses = cn({
     [styles.fieldInput]: true,
     [styles.fieldInputError]: hasError,
+    [inputClassName]: !!inputClassName,
   });
 
   const inputRender = (inputProps) => (
-    <Input
-      id={id}
-      name={name}
-      type={type}
-      placeholder={placeholder}
-      className={inputClasses}
-      defaultValue={defaultValue}
-      onChange={(event) => inputProps.onChange(event.target.value)}
-    >
-      {children}
-    </Input>
+    <>
+      <Input
+        id={id}
+        name={name}
+        type={type}
+        placeholder={placeholder}
+        className={inputClasses}
+        defaultValue={defaultValue}
+        onChange={(event) => inputProps.onChange(event.target.value)}
+      >
+        {children}
+        {
+          hasError
+          && (
+          <Text
+            tag="span"
+            size="14"
+            className={cn(styles.fieldError, errorClassName)}
+            weight="400"
+          >
+            {error.message}
+          </Text>
+          )
+        }
+      </Input>
+
+    </>
   );
 
   return (
@@ -55,7 +75,7 @@ export default function Field(props) {
     >
       <label
         htmlFor={id}
-        className={styles.fieldLabel}
+        className={cn(styles.fieldLabel, labelClassName)}
       >
         <Text
           tag="span"
@@ -72,19 +92,6 @@ export default function Field(props) {
         rules={rules}
         render={inputRender}
       />
-      {
-        hasError
-        && (
-        <Text
-          tag="span"
-          size="14"
-          className={styles.fieldError}
-          weight="400"
-        >
-          {error.message}
-        </Text>
-        )
-      }
     </div>
   );
 }
@@ -93,27 +100,32 @@ Field.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   control: PropTypes.object.isRequired,
+  id: PropTypes.string.isRequired,
   type: PropTypes.string,
   placeholder: PropTypes.string,
-  className: PropTypes.string,
-  id: PropTypes.string,
   defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   error: PropTypes.object,
   children: PropTypes.node,
   required: PropTypes.instanceOf(ValidationRule),
   pattern: PropTypes.instanceOf(ValidationRule),
   validate: PropTypes.func,
+  className: PropTypes.string,
+  labelClassName: PropTypes.string,
+  inputClassName: PropTypes.string,
+  errorClassName: PropTypes.string,
 };
 
 Field.defaultProps = {
   type: 'text',
-  placeholder: '',
-  className: '',
   defaultValue: '',
-  id: '',
-  error: {},
-  children: null,
-  required: new ValidationRule(false, ''),
-  pattern: new ValidationRule(false, ''),
+  placeholder: undefined,
+  className: undefined,
+  error: undefined,
+  children: undefined,
+  required: new ValidationRule(false, undefined),
+  pattern: new ValidationRule(false, undefined),
   validate: undefined,
+  inputClassName: undefined,
+  labelClassName: undefined,
+  errorClassName: undefined,
 };

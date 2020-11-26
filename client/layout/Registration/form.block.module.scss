@@ -1,0 +1,51 @@
+.root {
+  @include container();
+  padding: {
+    top: 40px;
+  };
+
+  @include desktop {
+    padding: {
+      top: 60px;
+    };
+  }
+
+  .title {
+    line-height: 29px;
+    color: map-get($black, 'light' );
+
+    @include desktop {
+      line-height: 53px;
+    }
+  }
+
+  .field {
+    margin-top: 30px;
+
+    @include desktop {
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    @include desktop {
+      &Label {
+        width: 260px;
+        flex-basis: 260px;
+        flex-shrink: 0;
+        margin-bottom: 0;
+      }
+
+      &Input {
+
+        &S {
+          width: 155px;
+        }
+
+        &L {
+          width: 416px;
+        }
+      }
+    }
+  }
+}

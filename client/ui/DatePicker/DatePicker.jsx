@@ -8,35 +8,47 @@ import styles from './styles.module.scss';
 
 export default function DatePicker(props) {
   const {
-    className, id, label, name, defaultValue, control, error, required, placeholder, validate,
+    className,
+    id,
+    label,
+    name,
+    defaultValue,
+    control,
+    error,
+    required,
+    placeholder,
+    validate,
+    labelClassName,
+    inputClassName,
+    errorClassName,
   } = props;
 
   return (
-    <div
+    <Field
       className={cn(className, styles.datePicker)}
+      defaultValue={defaultValue}
+      control={control}
+      error={error}
+      id={id}
+      label={label}
+      name={name}
+      placeholder={placeholder}
+      required={required}
+      validate={validate}
+      labelClassName={labelClassName}
+      inputClassName={inputClassName}
+      errorClassName={errorClassName}
     >
-      <Field
-        defaultValue={defaultValue}
-        control={control}
-        error={error}
-        id={id}
-        label={label}
-        name={name}
-        placeholder={placeholder}
-        required={required}
-        validate={validate}
+      <Button
+        className={styles.datePickerButton}
+        variant="icon"
       >
-        <Button
-          className={styles.datePickerButton}
-          variant="icon"
-        >
-          <Icon
-            className={styles.datePickerButtonIcon}
-            name="calendar"
-          />
-        </Button>
-      </Field>
-    </div>
+        <Icon
+          className={styles.datePickerButtonIcon}
+          name="calendar"
+        />
+      </Button>
+    </Field>
   );
 }
 
@@ -51,6 +63,9 @@ DatePicker.propTypes = {
   error: PropTypes.object,
   required: PropTypes.instanceOf(ValidationRule),
   validate: PropTypes.func,
+  labelClassName: PropTypes.string,
+  inputClassName: PropTypes.string,
+  errorClassName: PropTypes.string,
 };
 
 const validate = (value) => {
@@ -66,4 +81,7 @@ DatePicker.defaultProps = {
   error: {},
   required: new ValidationRule(false, ''),
   validate,
+  inputClassName: undefined,
+  labelClassName: undefined,
+  errorClassName: undefined,
 };

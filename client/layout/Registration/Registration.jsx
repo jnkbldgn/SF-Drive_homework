@@ -2,10 +2,18 @@ import Text from 'ui/Text';
 import Button from 'ui/Button';
 import { useForm } from 'react-hook-form';
 import { register } from 'api';
+import PropOfDevice from 'models/PropOfDevice';
+import { MOBILE_BREAK_POINT as BREAK_POINT } from 'constants';
+import cn from 'classnames';
 import PersonalInfo from './PersonalInfo';
 import IdentityCard from './IdentityCard';
 import DriverLicense from './DriverLicense';
 import styles from './styles.module.scss';
+
+const stepsSize = new PropOfDevice(20, 12, BREAK_POINT);
+const titleSize = new PropOfDevice(64, 32, BREAK_POINT);
+
+const titleWeight = new PropOfDevice(700, 500, BREAK_POINT);
 
 export default function Registration() {
   const methods = useForm();
@@ -18,32 +26,38 @@ export default function Registration() {
     <>
       <Text
         tag="p"
-        size="12"
+        size={stepsSize}
         weight="400"
-        className={styles.steps}
+        className={cn(styles.wrap, styles.steps)}
       >
         Шаг 1 из 3
       </Text>
       <Text
         tag="h1"
-        size="32"
-        weight="500"
-        className={styles.header}
+        size={titleSize}
+        weight={titleWeight}
+        className={cn(styles.wrap, styles.title)}
       >
         Расскажите о себе
       </Text>
-      <form method="POST" onSubmit={handleSubmit(onSubmit)}>
+      <form
+        method="POST"
+        onSubmit={handleSubmit(onSubmit)}
+      >
         <PersonalInfo
           control={control}
           errors={errors}
+          className={styles.wrap}
         />
         <IdentityCard
           control={control}
           errors={errors}
+          className={styles.wrap}
         />
         <DriverLicense
           control={control}
           errors={errors}
+          className={styles.wrap}
         />
         <div
           className={styles.submit}

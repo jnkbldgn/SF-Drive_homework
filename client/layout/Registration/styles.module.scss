@@ -1,15 +1,28 @@
+.wrap {
+  width: 676px;
+  margin: 0 auto;
+}
+
 .steps {
   line-height: 18px;
   color: map-get($gray, 'light');
   text-align: center;
   margin-top: 54px;
+
+  @include desktop {
+    line-height: 29px;
+  }
 }
 
-.header {
+.title {
   line-height: 38px;
   color: map-get($black, 'light');
   text-align: center;
   margin-top: 10px;
+
+  @include desktop {
+    line-height: 77px;
+  }
 }
 
 .submit {
@@ -22,8 +35,19 @@
   position: sticky;
   bottom: 0;
   background-color: map-get($white, 'base');
+  margin-top: 40px;
+
+  @include desktop {
+    display: flex;
+    justify-content: center;
+    margin-top: 90px;
+  }
 
   &Button {
     width: 100%;
+
+    @include desktop {
+      width: auto;
+    }
   }
 }

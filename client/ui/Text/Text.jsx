@@ -105,6 +105,6 @@ Text.propTypes = {
 Text.defaultProps = {
   tag: tags[0],
   family: familiesProps[0],
-  children: null,
-  className: '',
+  children: undefined,
+  className: undefined,
 };
