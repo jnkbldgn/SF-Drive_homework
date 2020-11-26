@@ -5,6 +5,12 @@
         bottom: 30px;
     };
     background-color: map-get($purpl, 'base');
+
+    @include desktop {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
 }
 
 .copyright {
@@ -13,4 +19,8 @@
     margin-bottom: 14px;
     opacity: .4;
     display: block;
+
+    @include desktop {
+        margin-bottom: 0;
+    }
 }
