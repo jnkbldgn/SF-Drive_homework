@@ -2,16 +2,36 @@
     @include container();
     padding: {
         top: 40px;
-        bottom: 40px;
+        bottom: 60px;
     }
     display: flex;
     flex-direction: column;
     align-items: center;
 
+    @include desktop {
+        padding: {
+            top: 80px;
+            bottom: 120px;
+        };
+    }
+
+    &Title {
+        line-height: 29px;
+
+        @include desktop {
+            line-height: 58px;
+        }
+    }
+
     &Members {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
+
+        @include desktop {
+            justify-content: center;
+            width: 1044px;
+        }
     }
 
     &Member {
@@ -21,6 +41,11 @@
         flex-basis: 50%;
         margin-top: 30px;
 
+        @include desktop {
+            margin-top: 55px;
+            flex-basis: 25%;
+        }
+
         &Avatar {
             margin-bottom: 15px;
         }
@@ -28,11 +53,19 @@
         &Name {
             color: map-get($black, 'base');
             line-height: 24px;
+
+            @include desktop {
+                line-height: 29px;
+            }
         }
 
         &Specialty {
             color: map-get($gray, 'light');
             line-height: 18px;
+
+            @include desktop {
+                line-height: 21px;
+            }
         }
     }
 }

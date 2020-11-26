@@ -1,15 +1,13 @@
 import { lazy } from 'react';
 
-const layout = (name) => lazy(() => import(`layout/${name}`));
-
 export const routes = [
   {
     path: '/',
-    component: layout('About'),
+    component: lazy(() => import(/* webpackChunkName: 'About' */ 'layout/About')),
   },
   {
     path: '/registration',
-    component: layout('Registration'),
+    component: lazy(() => import(/* webpackChunkName: 'Registration' */ 'layout/Registration')),
   },
 ];
 

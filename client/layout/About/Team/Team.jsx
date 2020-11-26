@@ -1,7 +1,13 @@
 import Text from 'ui/Text';
 import Picture from 'ui/Picture';
+import PropOfDevice from 'models/PropOfDevice';
+import { MOBILE_BREAK_POINT as BREAK_POINT } from 'constants';
 import { Member } from './models';
 import styles from './styles.module.scss';
+
+const titleSize = new PropOfDevice(48, 24, BREAK_POINT);
+const memberNameSize = new PropOfDevice(20, 16, BREAK_POINT);
+const memberSpetialtySize = new PropOfDevice(14, 12, BREAK_POINT);
 
 export default function Team() {
   const members = [
@@ -24,14 +30,14 @@ export default function Team() {
         className={styles.teamMemberAvatar}
       />
       <Text
-        size="16"
+        size={memberNameSize}
         weight="500"
         className={styles.teamMemberName}
       >
         {item.name}
       </Text>
       <Text
-        size="12"
+        size={memberSpetialtySize}
         weight="500"
         className={styles.teamMemberSpecialty}
       >
@@ -41,11 +47,13 @@ export default function Team() {
   ));
   return (
     <section className={styles.team}>
-      <header>
+      <header
+        className={styles.teamTitle}
+      >
         <Text
           tag="h2"
           weight="500"
-          size="24"
+          size={titleSize}
         >
           Команда
         </Text>

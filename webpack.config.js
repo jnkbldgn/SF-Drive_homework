@@ -2,7 +2,6 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const TerserWebpackPlugin = require('terser-webpack-plugin');
 const SimpleProgressWebpackPlugin = require('simple-progress-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
@@ -31,7 +30,8 @@ const entry = {
 
 const output = {
   path: resolve(`./${buildDir}`),
-  filename: isDev ? 'bundle.js' : 'bundle.[contenthash:8].js',
+  filename: isDev ? '[name].js' : '[name].[contenthash:8].js',
+  chunkFilename: isDev ? '[name].js' : '[name].[contenthash:8].js',
 };
 
 const styleLoader = isDev ? 'style-loader' : MiniCssExtractPlugin.loader;
@@ -122,23 +122,9 @@ const plugins = [
   }),
 ];
 
-const devServer = {
-  contentBase: resolve(buildDir),
-  port: 8080,
-};
-
 const optimization = {
   minimize: !isDev,
-  minimizer: [
-    new TerserWebpackPlugin({
-      parallel: true,
-      extractComments: true,
-    }),
-  ],
   splitChunks: {
-    chunks: 'all',
-    minSize: 100000,
-    maxSize: 250000,
     cacheGroups: {
       vendors: {
         test: /\/node_modules\//,
@@ -167,5 +153,4 @@ module.exports = {
     extensions,
   },
   plugins,
-  devServer,
 };
