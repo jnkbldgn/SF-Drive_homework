@@ -18,7 +18,7 @@ const getValuePropOfDevice = (prop) => {
   }
 };
 
-const setNewValuePropOfDevice = (prop, fn) => debounce(() => fn(prop.getValue()), 1000 / 60);
+const setNewValuePropOfDevice = (prop, fn) => debounce(() => fn(prop.getValue()), 500);
 
 export default function Text(props) {
   const {

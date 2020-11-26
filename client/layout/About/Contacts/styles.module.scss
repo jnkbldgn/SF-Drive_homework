@@ -9,19 +9,63 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
+    
+    @include desktop {
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: {
+            top: 80px;
+            bottom: 80px;
+        }
+    }
+    
+    &Title {
+        line-height: 29px;
+        text-align: center;
+        
+        @include desktop {
+            line-height: 58px;
+            width: 100%;
+        }
+    }
+    
     .contact {
         margin-top: 20px;
         text-align: center;
 
+        &:last-child {
+            border-left: 1px solid map-get($gray, 'light-7');
+        }
+
+        @include desktop{
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 40px;
+            padding: 0 68px;
+            height: 62px;
+        }
+
         &Title {
             line-height: 18px;
+            width: 264px;
             color: map-get($gray, 'base');
+
+            @include desktop {
+                line-height: 21px;
+            }
         }
 
         &Value {
             line-height: 21px;
+            margin-top: 5px;
+            width: 264px;
             color: map-get($black, 'base');
+
+            @include desktop {
+                margin-top: 6px;
+                line-height: 29px;
+            }
         }
     }
 }
