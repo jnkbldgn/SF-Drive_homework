@@ -5,6 +5,7 @@ import { register } from 'api';
 import PropOfDevice from 'models/PropOfDevice';
 import { MOBILE_BREAK_POINT as BREAK_POINT } from 'constants';
 import cn from 'classnames';
+import { stringToDate, replaceNotDigs } from 'utils/formatting';
 import PersonalInfo from './PersonalInfo';
 import IdentityCard from './IdentityCard';
 import DriverLicense from './DriverLicense';
@@ -15,13 +16,54 @@ const titleSize = new PropOfDevice(64, 32, BREAK_POINT);
 
 const titleWeight = new PropOfDevice(700, 500, BREAK_POINT);
 
+const onSubmit = async (data) => {
+  const {
+    fio,
+    birthday,
+    email,
+    phone,
+    identityCardNumber,
+    identityCardCreateAt,
+    identityCardAuthority,
+    identityCardCode,
+    driverLicenseNumber,
+    driverLicenseCreateAt,
+  } = data;
+  const user = {
+    fio,
+    email,
+    phone: replaceNotDigs(phone),
+    birthday: stringToDate(birthday),
+  };
+  const identityCard = {
+    number: identityCardNumber,
+    createAt: stringToDate(identityCardCreateAt),
+    authority: identityCardAuthority,
+    code: identityCardCode,
+  };
+  const driverLicense = {
+    number: driverLicenseNumber,
+    createAt: stringToDate(driverLicenseCreateAt),
+  };
+
+  const request = {
+    user,
+    identityCard,
+    driverLicense,
+  };
+
+  try {
+    const response = await register(request);
+    console.info(response);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 export default function Registration() {
   const methods = useForm();
   const { control, errors, handleSubmit } = methods;
 
-  const onSubmit = (data) => {
-    register(data);
-  };
   return (
     <>
       <Text

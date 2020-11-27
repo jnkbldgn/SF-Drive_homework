@@ -1,13 +1,18 @@
+const createError = require('http-errors');
 const mongoose = require('mongoose');
 
-const URL = 'mongodb://localhost/test';
+const URL = 'mongodb://localhost:27017/sf_local';
 const options = {
   useNewUrlParser: true,
 };
 
-function init() {
-  const connection = mongoose.connect(URL, options);
-  return connection;
-}
+const init = async () => {
+  try {
+    const connect = await mongoose.connect(URL, options);
+    return connect;
+  } catch {
+    throw createError.ServiceUnavailable();
+  }
+};
 
 module.exports = init;

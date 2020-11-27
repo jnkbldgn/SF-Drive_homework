@@ -4,8 +4,8 @@ const { Schema } = mongoose;
 
 const driverLicenseSchema = {
   userId: String,
-  driverLicenseNumber: String,
-  driverLicenseCreateAt: Date,
+  number: String,
+  createAt: Date,
 };
 
 const driverLicense = new Schema(driverLicenseSchema);
