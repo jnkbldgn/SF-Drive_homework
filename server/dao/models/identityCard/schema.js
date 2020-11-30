@@ -4,10 +4,10 @@ const { Schema } = mongoose;
 
 const identityCardSchema = {
   userId: String,
-  identityCardNumber: String,
-  identityCardCreateAt: Date,
-  identityCardAuthority: String,
-  identityCardCode: String,
+  number: String,
+  createAt: Date,
+  authority: String,
+  code: String,
 };
 
 const identityCard = new Schema(identityCardSchema);

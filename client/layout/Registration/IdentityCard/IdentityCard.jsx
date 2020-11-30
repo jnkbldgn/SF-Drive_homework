@@ -14,7 +14,6 @@ const titleWeight = new PropOfDevice(400, 500, BREAK_POINT);
 
 export default function IdentityCard(props) {
   const { control, errors, className } = props;
-  const codePattern = new ValidationRule(/\d{3}-\d{3}/, 'Неверный формат');
   const requiredRule = new ValidationRule(true, 'Обязательное поле');
   return (
     <section
@@ -75,7 +74,6 @@ export default function IdentityCard(props) {
           inputClassName={styles.fieldInputS}
           control={control}
           error={errors.identityCardCode}
-          pattern={codePattern}
           required={requiredRule}
         />
       </header>

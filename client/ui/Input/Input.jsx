@@ -25,7 +25,7 @@ export default function Input(props) {
         name={name}
         type={type}
         placeholder={placeholder}
-        defaultProps={defaultValue}
+        defaultValue={defaultValue}
         onFocus={onFocus}
         onBlur={onBlur}
         onChange={onChange}

@@ -1,33 +1,65 @@
 const createError = require('http-errors');
 
 class UserService {
-  constructor(connect, userModel) {
+  constructor(connect, userModel, identityCardModel, driverLicenseModel) {
     this.connect = connect;
     this.userModel = userModel;
+    this.identityCardModel = identityCardModel;
+    this.driverLicenseModel = driverLicenseModel;
   }
 
-  async create(request) {
+  async create(userReg) {
+    const { connection } = await this.connect();
+
+    const {
+      email,
+    } = userReg;
+
+    const oldUser = await this.userModel.findOne({ email });
+
+    if (oldUser) {
+      connection.close();
+      throw createError(403, 'USER_EXISTS');
+    }
+
     try {
-      await this.connect();
+      const user = await this.userModel.create(userReg);
+      return user;
+    } catch (e) {
+      throw createError.BadRequest(e);
+    } finally {
+      connection.close();
+    }
+  }
 
-      const {
-        email,
-      } = request;
+  async createFull(userReg, identityCardReq, driverLicenseReq) {
+    const user = await this.create(userReg);
 
-      const oldUser = await this.userModel.findOne({ email });
+    const { _id: userId } = user;
+    const { connection } = await this.connect();
 
-      if (oldUser) {
-        throw createError(403, 'User already exists');
-      }
+    const identityCard = {
+      userId,
+      ...identityCardReq,
+    };
 
-      this.userModel.create(request, (error, user) => {
-        if (error) {
-          throw createError.BadRequest(error);
-        }
-        return user;
-      });
-    } catch {
-      throw createError.ServiceUnavailable();
+    const driverLicense = {
+      userId,
+      ...driverLicenseReq,
+    };
+
+    try {
+      const identityCardRes = await this.identityCardModel.create(identityCard);
+      const driverLicenseRes = await this.driverLicenseModel.create(driverLicense);
+      return {
+        user,
+        identityCard: identityCardRes,
+        driverLicense: driverLicenseRes,
+      };
+    } catch (e) {
+      throw createError.BadRequest(e);
+    } finally {
+      connection.close();
     }
   }
 }

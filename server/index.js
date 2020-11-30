@@ -32,15 +32,14 @@ app.use((error, req, res, next) => {
   }
   const {
     status = 500,
-    message = 'Internal Server Error',
+    message = {},
     stack = '',
-    options = {},
   } = error;
 
   const body = {
-    stack,
-    message,
-    options,
+    status,
+    message: message.message || 'Internal Server Error',
+    errors: message.errors,
   };
 
   if (isDev) {
@@ -49,6 +48,7 @@ app.use((error, req, res, next) => {
 
   console.error('Error  status:', body.status);
   console.error('Error  message:', body.message);
+  console.error('Errors:', body.errors);
 
   res.status(status);
   res.json(body);

@@ -5,6 +5,7 @@ import { register } from 'api';
 import PropOfDevice from 'models/PropOfDevice';
 import { MOBILE_BREAK_POINT as BREAK_POINT } from 'constants';
 import cn from 'classnames';
+import { stringToDate, replaceNotDigs } from 'utils/formatting';
 import PersonalInfo from './PersonalInfo';
 import IdentityCard from './IdentityCard';
 import DriverLicense from './DriverLicense';
@@ -17,11 +18,59 @@ const titleWeight = new PropOfDevice(700, 500, BREAK_POINT);
 
 export default function Registration() {
   const methods = useForm();
-  const { control, errors, handleSubmit } = methods;
+  const {
+    control, errors, setError, handleSubmit,
+  } = methods;
+  const onSubmit = async (properties) => {
+    const {
+      fio,
+      birthday,
+      email,
+      phone,
+      identityCardNumber,
+      identityCardCreateAt,
+      identityCardAuthority,
+      identityCardCode,
+      driverLicenseNumber,
+      driverLicenseCreateAt,
+    } = properties;
+    const user = {
+      fio,
+      email,
+      phone: replaceNotDigs(phone),
+      birthday: stringToDate(birthday),
+    };
+    const identityCard = {
+      number: identityCardNumber,
+      createAt: stringToDate(identityCardCreateAt),
+      authority: identityCardAuthority,
+      code: identityCardCode,
+    };
+    const driverLicense = {
+      number: driverLicenseNumber,
+      createAt: stringToDate(driverLicenseCreateAt),
+    };
 
-  const onSubmit = (data) => {
-    register(data);
+    const request = {
+      user,
+      identityCard,
+      driverLicense,
+    };
+
+    try {
+      await register(request);
+    } catch (err) {
+      const { data = {} } = err;
+      const { errors: dataErrors = {} } = data;
+
+      Object
+        .keys(dataErrors)
+        .forEach((key) => {
+          setError(key, { type: 'manual', message: dataErrors[key].message });
+        });
+    }
   };
+
   return (
     <>
       <Text

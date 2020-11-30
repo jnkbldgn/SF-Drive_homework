@@ -7,7 +7,7 @@ const router = express.Router();
 router.post('/register', registerCtrl);
 
 router.use(() => {
-  throw createError(404);
+  throw createError.NotFound();
 });
 
 module.exports = router;
