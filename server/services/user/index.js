@@ -19,52 +19,47 @@ class UserService {
 
     if (oldUser) {
       connection.close();
-      throw createError(403, 'User already exists');
+      throw createError(403, 'USER_EXISTS');
     }
 
-    this.userModel.create(userReg, (error, user) => {
-      connection.close();
-      if (error) {
-        throw createError.BadRequest(error);
-      }
+    try {
+      const user = await this.userModel.create(userReg);
       return user;
-    });
+    } catch (e) {
+      throw createError.BadRequest(e);
+    } finally {
+      connection.close();
+    }
   }
 
   async createFull(userReg, identityCardReq, driverLicenseReq) {
     const user = await this.create(userReg);
-    if (user) {
-      const { _id: userId } = user;
-      const { connection } = await this.connect();
 
-      const identityCard = {
-        userId,
-        ...identityCardReq,
+    const { _id: userId } = user;
+    const { connection } = await this.connect();
+
+    const identityCard = {
+      userId,
+      ...identityCardReq,
+    };
+
+    const driverLicense = {
+      userId,
+      ...driverLicenseReq,
+    };
+
+    try {
+      const identityCardRes = await this.identityCardModel.create(identityCard);
+      const driverLicenseRes = await this.driverLicenseModel.create(driverLicense);
+      return {
+        user,
+        identityCard: identityCardRes,
+        driverLicense: driverLicenseRes,
       };
-
-      const driverLicense = {
-        userId,
-        ...driverLicenseReq,
-      };
-
-      const promises = [
-        this.identityCardModel.create(identityCard),
-        this.driverLicenseModel.create(driverLicense),
-      ];
-
-      Promise.all(promises)
-        .then(([identityCardRes, driverLicenseRes]) => {
-          connection.close();
-          return {
-            user,
-            identityCard: identityCardRes,
-            driverLicense: driverLicenseRes,
-          };
-        })
-        .catch((error) => {
-          connection.close();
-          throw createError.BadRequest(error);
-        });
+    } catch (e) {
+      throw createError.BadRequest(e);
+    } finally {
+      connection.close();
     }
   }
 }

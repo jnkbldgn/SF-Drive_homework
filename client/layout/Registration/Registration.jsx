@@ -16,53 +16,60 @@ const titleSize = new PropOfDevice(64, 32, BREAK_POINT);
 
 const titleWeight = new PropOfDevice(700, 500, BREAK_POINT);
 
-const onSubmit = async (data) => {
-  const {
-    fio,
-    birthday,
-    email,
-    phone,
-    identityCardNumber,
-    identityCardCreateAt,
-    identityCardAuthority,
-    identityCardCode,
-    driverLicenseNumber,
-    driverLicenseCreateAt,
-  } = data;
-  const user = {
-    fio,
-    email,
-    phone: replaceNotDigs(phone),
-    birthday: stringToDate(birthday),
-  };
-  const identityCard = {
-    number: identityCardNumber,
-    createAt: stringToDate(identityCardCreateAt),
-    authority: identityCardAuthority,
-    code: identityCardCode,
-  };
-  const driverLicense = {
-    number: driverLicenseNumber,
-    createAt: stringToDate(driverLicenseCreateAt),
-  };
-
-  const request = {
-    user,
-    identityCard,
-    driverLicense,
-  };
-
-  try {
-    const response = await register(request);
-    console.info(response);
-  } catch (error) {
-    console.error(error);
-  }
-};
-
 export default function Registration() {
   const methods = useForm();
-  const { control, errors, handleSubmit } = methods;
+  const {
+    control, errors, setError, handleSubmit,
+  } = methods;
+  const onSubmit = async (properties) => {
+    const {
+      fio,
+      birthday,
+      email,
+      phone,
+      identityCardNumber,
+      identityCardCreateAt,
+      identityCardAuthority,
+      identityCardCode,
+      driverLicenseNumber,
+      driverLicenseCreateAt,
+    } = properties;
+    const user = {
+      fio,
+      email,
+      phone: replaceNotDigs(phone),
+      birthday: stringToDate(birthday),
+    };
+    const identityCard = {
+      number: identityCardNumber,
+      createAt: stringToDate(identityCardCreateAt),
+      authority: identityCardAuthority,
+      code: identityCardCode,
+    };
+    const driverLicense = {
+      number: driverLicenseNumber,
+      createAt: stringToDate(driverLicenseCreateAt),
+    };
+
+    const request = {
+      user,
+      identityCard,
+      driverLicense,
+    };
+
+    try {
+      await register(request);
+    } catch (err) {
+      const { data = {} } = err;
+      const { errors: dataErrors = {} } = data;
+
+      Object
+        .keys(dataErrors)
+        .forEach((key) => {
+          setError(key, { type: 'manual', message: dataErrors[key].message });
+        });
+    }
+  };
 
   return (
     <>

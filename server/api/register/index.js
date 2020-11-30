@@ -16,7 +16,7 @@ const register = asyncHandler(async (req, res) => {
 
   } = body;
 
-  const { user } = userService.createFull(userReq, identityCardReq, driverLicenseReq);
+  const { user } = await userService.createFull(userReq, identityCardReq, driverLicenseReq);
   if (user) {
     const data = {
       email: user.email,
