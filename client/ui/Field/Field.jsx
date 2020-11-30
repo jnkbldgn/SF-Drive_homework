@@ -9,11 +9,13 @@ import styles from './styles.module.scss';
 export default function Field(props) {
   const {
     className,
+    mask,
+    maskPlaceholder,
+    alwaysShowMask,
     id,
     label,
     name,
     type,
-    placeholder,
     defaultValue,
     control,
     error,
@@ -45,7 +47,9 @@ export default function Field(props) {
         id={id}
         name={name}
         type={type}
-        placeholder={placeholder}
+        mask={mask}
+        maskPlaceholder={maskPlaceholder}
+        alwaysShowMask={alwaysShowMask}
         className={inputClasses}
         defaultValue={defaultValue}
         onChange={(event) => inputProps.onChange(event.target.value)}
@@ -102,8 +106,17 @@ Field.propTypes = {
   control: PropTypes.object.isRequired,
   id: PropTypes.string.isRequired,
   type: PropTypes.string,
-  placeholder: PropTypes.string,
-  defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  mask: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string),
+    PropTypes.arrayOf(PropTypes.instanceOf(RegExp)),
+  ]),
+  maskPlaceholder: PropTypes.string,
+  alwaysShowMask: PropTypes.bool,
+  defaultValue: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
   error: PropTypes.object,
   children: PropTypes.node,
   required: PropTypes.instanceOf(ValidationRule),
@@ -118,7 +131,9 @@ Field.propTypes = {
 Field.defaultProps = {
   type: 'text',
   defaultValue: '',
-  placeholder: undefined,
+  mask: undefined,
+  maskPlaceholder: undefined,
+  alwaysShowMask: true,
   className: undefined,
   error: undefined,
   children: undefined,

@@ -16,7 +16,9 @@ export default function DatePicker(props) {
     control,
     error,
     required,
-    placeholder,
+    mask,
+    maskPlaceholder,
+    alwaysShowMask,
     validate,
     labelClassName,
     inputClassName,
@@ -32,7 +34,9 @@ export default function DatePicker(props) {
       id={id}
       label={label}
       name={name}
-      placeholder={placeholder}
+      mask={mask}
+      maskPlaceholder={maskPlaceholder}
+      alwaysShowMask={alwaysShowMask}
       required={required}
       validate={validate}
       labelClassName={labelClassName}
@@ -56,7 +60,13 @@ DatePicker.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   control: PropTypes.object.isRequired,
-  placeholder: PropTypes.string,
+  mask: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string),
+    PropTypes.arrayOf(PropTypes.instanceOf(RegExp)),
+  ]),
+  maskPlaceholder: PropTypes.string,
+  alwaysShowMask: PropTypes.bool,
   className: PropTypes.string,
   id: PropTypes.string,
   defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -74,10 +84,12 @@ const validate = (value) => {
   return !Number.isNaN(date) || 'Неверный формат даты';
 };
 DatePicker.defaultProps = {
-  placeholder: '00.00.0000',
-  className: '',
-  defaultValue: '',
-  id: '',
+  mask: '99.99.9999',
+  maskPlaceholder: '00.00.0000',
+  alwaysShowMask: true,
+  className: undefined,
+  defaultValue: undefined,
+  id: undefined,
   error: {},
   required: new ValidationRule(false, ''),
   validate,

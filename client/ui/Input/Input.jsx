@@ -6,7 +6,16 @@ import styles from './styles.module.scss';
 
 export default function Input(props) {
   const {
-    defaultValue, name, placeholder, type, className, id, onChange, children,
+    defaultValue,
+    name,
+    mask,
+    maskPlaceholder,
+    alwaysShowMask,
+    type,
+    className,
+    id,
+    onChange,
+    children,
   } = props;
   const [isFocus, setFocus] = useState(false);
 
@@ -24,7 +33,9 @@ export default function Input(props) {
         id={id}
         name={name}
         type={type}
-        placeholder={placeholder}
+        mask={mask}
+        maskPlaceholder={maskPlaceholder}
+        alwaysShowMask={alwaysShowMask}
         defaultValue={defaultValue}
         onFocus={onFocus}
         onBlur={onBlur}
@@ -38,7 +49,13 @@ export default function Input(props) {
 Input.propTypes = {
   name: PropTypes.string.isRequired,
   type: PropTypes.string,
-  placeholder: PropTypes.string,
+  mask: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string),
+    PropTypes.arrayOf(PropTypes.instanceOf(RegExp)),
+  ]),
+  maskPlaceholder: PropTypes.string,
+  alwaysShowMask: PropTypes.bool,
   className: PropTypes.string,
   id: PropTypes.string,
   defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -48,9 +65,11 @@ Input.propTypes = {
 
 Input.defaultProps = {
   type: 'text',
-  placeholder: '',
-  className: '',
-  defaultValue: '',
-  id: '',
+  className: undefined,
+  defaultValue: undefined,
+  id: undefined,
   children: null,
+  mask: undefined,
+  maskPlaceholder: undefined,
+  alwaysShowMask: true,
 };
