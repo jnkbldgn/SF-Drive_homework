@@ -19,66 +19,63 @@ export default function IdentityCard(props) {
     <section
       className={cn(styles.root, className)}
     >
-      <header
+      <Text
         className={styles.title}
+        tag="h2"
+        size={titleSize}
+        weight={titleWeight}
       >
-        <Text
-          tag="h2"
-          size={titleSize}
-          weight={titleWeight}
-        >
-          Паспорт
-        </Text>
-        <Field
-          label="Серия и номер"
-          name="identityCardNumber"
-          id="identityCardNumber"
-          mask="9999 999999"
-          maskPlaceholder="0"
-          className={styles.field}
-          labelClassName={styles.fieldLabel}
-          inputClassName={styles.fieldInputS}
-          control={control}
-          error={errors.identityCardNumber}
-          required={requiredRule}
-        />
-        <DatePicker
-          label="Дата выдачи"
-          name="identityCardCreateAt"
-          id="identityCardCreateAt"
-          className={styles.field}
-          labelClassName={styles.fieldLabel}
-          inputClassName={styles.fieldInputS}
-          control={control}
-          error={errors.identityCardCreateAt}
-          required={requiredRule}
-        />
-        <Field
-          label="Кем выдан"
-          name="identityCardAuthority"
-          id="identityCardAuthority"
-          placeholder="Название органа выдавшего паспорт"
-          className={styles.field}
-          labelClassName={styles.fieldLabel}
-          inputClassName={styles.fieldInputL}
-          control={control}
-          error={errors.identityCardAuthority}
-          required={requiredRule}
-        />
-        <Field
-          label="Код подразделения"
-          name="identityCardCode"
-          id="identityCardCode"
-          mask="999-999"
-          maskPlaceholder="0"
-          className={styles.field}
-          labelClassName={styles.fieldLabel}
-          inputClassName={styles.fieldInputS}
-          control={control}
-          error={errors.identityCardCode}
-          required={requiredRule}
-        />
-      </header>
+        Паспорт
+      </Text>
+      <Field
+        label="Серия и номер"
+        name="identityCardNumber"
+        id="identityCardNumber"
+        mask="9999 999999"
+        maskPlaceholder="0"
+        className={styles.field}
+        labelClassName={styles.fieldLabel}
+        inputClassName={styles.fieldInputS}
+        control={control}
+        error={errors.identityCardNumber}
+        required={requiredRule}
+      />
+      <DatePicker
+        label="Дата выдачи"
+        name="identityCardCreateAt"
+        id="identityCardCreateAt"
+        className={styles.field}
+        labelClassName={styles.fieldLabel}
+        inputClassName={styles.fieldInputS}
+        control={control}
+        error={errors.identityCardCreateAt}
+        required={requiredRule}
+      />
+      <Field
+        label="Кем выдан"
+        name="identityCardAuthority"
+        id="identityCardAuthority"
+        placeholder="Название органа выдавшего паспорт"
+        className={styles.field}
+        labelClassName={styles.fieldLabel}
+        inputClassName={styles.fieldInputL}
+        control={control}
+        error={errors.identityCardAuthority}
+        required={requiredRule}
+      />
+      <Field
+        label="Код подразделения"
+        name="identityCardCode"
+        id="identityCardCode"
+        mask="999-999"
+        maskPlaceholder="0"
+        className={styles.field}
+        labelClassName={styles.fieldLabel}
+        inputClassName={styles.fieldInputS}
+        control={control}
+        error={errors.identityCardCode}
+        required={requiredRule}
+      />
     </section>
   );
 }

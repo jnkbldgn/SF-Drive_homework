@@ -22,66 +22,63 @@ export default function PersonalInfo(props) {
     <section
       className={cn(styles.root, className)}
     >
-      <header
+      <Text
         className={styles.title}
+        tag="h2"
+        size={titleSize}
+        weight={titleWeight}
       >
-        <Text
-          tag="h2"
-          size={titleSize}
-          weight={titleWeight}
-        >
-          Информация о вас
-        </Text>
-        <Field
-          label="ФИО"
-          name="fio"
-          id="fio"
-          placeholder="ФИО полностью"
-          className={styles.field}
-          labelClassName={styles.fieldLabel}
-          inputClassName={styles.fieldInputL}
-          control={control}
-          error={errors.fio}
-          required={requiredRule}
-        />
-        <DatePicker
-          label="Дата рождения"
-          name="birthday"
-          id="birthday"
-          className={styles.field}
-          labelClassName={styles.fieldLabel}
-          inputClassName={styles.fieldInputS}
-          control={control}
-          error={errors.birthday}
-          required={requiredRule}
-        />
-        <Field
-          label="Электронная почта"
-          name="email"
-          id="email"
-          placeholder="mail@example.com"
-          className={styles.field}
-          labelClassName={styles.fieldLabel}
-          inputClassName={styles.fieldInputL}
-          control={control}
-          error={errors.email}
-          required={requiredRule}
-          pattern={mailPattern}
-        />
-        <Field
-          label="Телефон"
-          name="phone"
-          id="phone"
-          mask="+7 999 999-99-99"
-          maskPlaceholder="0"
-          className={styles.field}
-          labelClassName={styles.fieldLabel}
-          inputClassName={styles.fieldInputS}
-          control={control}
-          error={errors.phone}
-          required={requiredRule}
-        />
-      </header>
+        Информация о вас
+      </Text>
+      <Field
+        label="ФИО"
+        name="fio"
+        id="fio"
+        placeholder="ФИО полностью"
+        className={styles.field}
+        labelClassName={styles.fieldLabel}
+        inputClassName={styles.fieldInputL}
+        control={control}
+        error={errors.fio}
+        required={requiredRule}
+      />
+      <DatePicker
+        label="Дата рождения"
+        name="birthday"
+        id="birthday"
+        className={styles.field}
+        labelClassName={styles.fieldLabel}
+        inputClassName={styles.fieldInputS}
+        control={control}
+        error={errors.birthday}
+        required={requiredRule}
+      />
+      <Field
+        label="Электронная почта"
+        name="email"
+        id="email"
+        placeholder="mail@example.com"
+        className={styles.field}
+        labelClassName={styles.fieldLabel}
+        inputClassName={styles.fieldInputL}
+        control={control}
+        error={errors.email}
+        required={requiredRule}
+        pattern={mailPattern}
+      />
+      <Field
+        label="Телефон"
+        name="phone"
+        id="phone"
+        mask="+7 999 999-99-99"
+        maskPlaceholder="0"
+        className={styles.field}
+        labelClassName={styles.fieldLabel}
+        inputClassName={styles.fieldInputS}
+        control={control}
+        error={errors.phone}
+        required={requiredRule}
+      />
     </section>
   );
 }

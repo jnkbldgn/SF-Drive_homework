@@ -19,41 +19,38 @@ export default function DriverLicense(props) {
     <section
       className={cn(styles.root, className)}
     >
-      <header
+      <Text
         className={styles.title}
+        tag="h2"
+        size={titleSize}
+        weight={titleWeight}
       >
-        <Text
-          tag="h2"
-          size={titleSize}
-          weight={titleWeight}
-        >
-          Водительское удостоверение
-        </Text>
-        <Field
-          label="Серия и номер"
-          name="driverLicenseNumber"
-          id="driverLicenseNumber"
-          mask="9999 999999"
-          maskPlaceholder="0"
-          className={styles.field}
-          labelClassName={styles.fieldLabel}
-          inputClassName={styles.fieldInputS}
-          control={control}
-          error={errors.driverLicenseNumber}
-          required={requiredRule}
-        />
-        <DatePicker
-          label="Дата выдачи"
-          name="driverLicenseCreateAt"
-          id="driverLicenseCreateAt"
-          className={styles.field}
-          labelClassName={styles.fieldLabel}
-          inputClassName={styles.fieldInputS}
-          control={control}
-          error={errors.driverLicenseCreateAt}
-          required={requiredRule}
-        />
-      </header>
+        Водительское удостоверение
+      </Text>
+      <Field
+        label="Серия и номер"
+        name="driverLicenseNumber"
+        id="driverLicenseNumber"
+        mask="9999 999999"
+        maskPlaceholder="0"
+        className={styles.field}
+        labelClassName={styles.fieldLabel}
+        inputClassName={styles.fieldInputS}
+        control={control}
+        error={errors.driverLicenseNumber}
+        required={requiredRule}
+      />
+      <DatePicker
+        label="Дата выдачи"
+        name="driverLicenseCreateAt"
+        id="driverLicenseCreateAt"
+        className={styles.field}
+        labelClassName={styles.fieldLabel}
+        inputClassName={styles.fieldInputS}
+        control={control}
+        error={errors.driverLicenseCreateAt}
+        required={requiredRule}
+      />
     </section>
   );
 }
