@@ -33,7 +33,8 @@ export default function IdentityCard(props) {
           label="Серия и номер"
           name="identityCardNumber"
           id="identityCardNumber"
-          placeholder="0000 000000"
+          mask="9999 999999"
+          maskPlaceholder="0"
           className={styles.field}
           labelClassName={styles.fieldLabel}
           inputClassName={styles.fieldInputS}
@@ -68,7 +69,8 @@ export default function IdentityCard(props) {
           label="Код подразделения"
           name="identityCardCode"
           id="identityCardCode"
-          placeholder="000-000"
+          mask="999-999"
+          maskPlaceholder="0"
           className={styles.field}
           labelClassName={styles.fieldLabel}
           inputClassName={styles.fieldInputS}

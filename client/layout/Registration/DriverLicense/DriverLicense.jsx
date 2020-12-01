@@ -33,7 +33,8 @@ export default function DriverLicense(props) {
           label="Серия и номер"
           name="driverLicenseNumber"
           id="driverLicenseNumber"
-          placeholder="0000 000000"
+          mask="9999 999999"
+          maskPlaceholder="0"
           className={styles.field}
           labelClassName={styles.fieldLabel}
           inputClassName={styles.fieldInputS}

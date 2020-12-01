@@ -72,7 +72,8 @@ export default function PersonalInfo(props) {
           label="Телефон"
           name="phone"
           id="phone"
-          placeholder="+7 900 000-00-00"
+          mask="+7 999 999-99-99"
+          maskPlaceholder="0"
           className={styles.field}
           labelClassName={styles.fieldLabel}
           inputClassName={styles.fieldInputS}

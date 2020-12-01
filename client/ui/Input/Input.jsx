@@ -10,6 +10,7 @@ export default function Input(props) {
     name,
     mask,
     maskPlaceholder,
+    placeholder,
     alwaysShowMask,
     type,
     className,
@@ -35,6 +36,7 @@ export default function Input(props) {
         type={type}
         mask={mask}
         maskPlaceholder={maskPlaceholder}
+        placeholder={placeholder}
         alwaysShowMask={alwaysShowMask}
         defaultValue={defaultValue}
         onFocus={onFocus}
@@ -55,6 +57,7 @@ Input.propTypes = {
     PropTypes.arrayOf(PropTypes.instanceOf(RegExp)),
   ]),
   maskPlaceholder: PropTypes.string,
+  placeholder: PropTypes.string,
   alwaysShowMask: PropTypes.bool,
   className: PropTypes.string,
   id: PropTypes.string,
@@ -71,5 +74,6 @@ Input.defaultProps = {
   children: null,
   mask: undefined,
   maskPlaceholder: undefined,
+  placeholder: undefined,
   alwaysShowMask: true,
 };

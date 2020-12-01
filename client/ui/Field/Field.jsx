@@ -11,6 +11,7 @@ export default function Field(props) {
     className,
     mask,
     maskPlaceholder,
+    placeholder,
     alwaysShowMask,
     id,
     label,
@@ -49,6 +50,7 @@ export default function Field(props) {
         type={type}
         mask={mask}
         maskPlaceholder={maskPlaceholder}
+        placeholder={placeholder}
         alwaysShowMask={alwaysShowMask}
         className={inputClasses}
         defaultValue={defaultValue}
@@ -112,6 +114,7 @@ Field.propTypes = {
     PropTypes.arrayOf(PropTypes.instanceOf(RegExp)),
   ]),
   maskPlaceholder: PropTypes.string,
+  placeholder: PropTypes.string,
   alwaysShowMask: PropTypes.bool,
   defaultValue: PropTypes.oneOfType([
     PropTypes.string,
@@ -133,6 +136,7 @@ Field.defaultProps = {
   defaultValue: '',
   mask: undefined,
   maskPlaceholder: undefined,
+  placeholder: undefined,
   alwaysShowMask: true,
   className: undefined,
   error: undefined,

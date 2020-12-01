@@ -18,6 +18,7 @@ export default function DatePicker(props) {
     required,
     mask,
     maskPlaceholder,
+    placeholder,
     alwaysShowMask,
     validate,
     labelClassName,
@@ -36,6 +37,7 @@ export default function DatePicker(props) {
       name={name}
       mask={mask}
       maskPlaceholder={maskPlaceholder}
+      placeholder={placeholder}
       alwaysShowMask={alwaysShowMask}
       required={required}
       validate={validate}
@@ -66,6 +68,7 @@ DatePicker.propTypes = {
     PropTypes.arrayOf(PropTypes.instanceOf(RegExp)),
   ]),
   maskPlaceholder: PropTypes.string,
+  placeholder: PropTypes.string,
   alwaysShowMask: PropTypes.bool,
   className: PropTypes.string,
   id: PropTypes.string,
@@ -85,7 +88,8 @@ const validate = (value) => {
 };
 DatePicker.defaultProps = {
   mask: '99.99.9999',
-  maskPlaceholder: '00.00.0000',
+  maskPlaceholder: '0',
+  placeholder: '00.00.0000',
   alwaysShowMask: true,
   className: undefined,
   defaultValue: undefined,

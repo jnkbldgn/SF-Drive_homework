@@ -1,6 +1,7 @@
 export const stringToDate = (date) => {
   const [day, month, year] = date.split('.');
-  const result = Date.parse(`${month}/${day}/${year}`);
+  const resultDate = Date.parse(`${month}/${day}/${year}`);
+  const result = Number.isNaN(resultDate) ? null : new Date(resultDate);
 
   return result;
 };
