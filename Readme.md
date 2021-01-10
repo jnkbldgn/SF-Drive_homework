@@ -1,5 +1,6 @@
 ## ./cli.js
-Create component. Default create functional component withot style file.
+Create component.
+Default create functional component without style file.
 ```
 ./cli.js [path] <options>
 ```
